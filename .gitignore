@@ -1,0 +1,112 @@
+######################
+# .NET build outputs
+######################
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]64/
+artifacts/
+*.nupkg
+*.snupkg
+
+# Legacy packages.config restore folder (.NET Framework projects)
+packages/
+
+######################
+# Test, coverage, mutation, and benchmark output
+######################
+TestResults/
+[Tt]est[Rr]esult*/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+StrykerOutput/
+BenchmarkDotNet.Artifacts/
+
+######################
+# Local data and secrets
+######################
+*.db
+*.db-shm
+*.db-wal
+appsettings.*.local.json
+*.local.json
+.env
+.env.*
+!.env.example
+
+######################
+# DocFX output
+######################
+_site/
+**/api/.manifest
+
+######################
+# IDEs
+######################
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+launchSettings.local.json
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+# AI tool local (per-user) settings
+.claude/settings.local.json
+CLAUDE.local.md
+
+######################
+# Office lock files
+######################
+.~lock.*#
+~$*
+
+######################
+# OS files
+######################
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+.Trash-*
+
+######################
+# Node (slide/outline toolchains only)
+######################
+node_modules/
+
