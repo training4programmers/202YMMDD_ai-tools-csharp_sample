@@ -1,0 +1,14 @@
+{
+  // Copilot agent edits to test files need your explicit approval, even when other edits are auto-approved.
+  // The last matching pattern decides, so every "false" entry comes after "**/*". The guard and hook files
+  // (scripts, .github/hooks, .claude) need approval too, so the agent can't quietly switch off its own guard.
+  "chat.tools.edits.autoApprove": {
+    "**/*": true,
+    "**/.vscode/*.json": false,
+    "**/.env": false,
+    "**/tests/**": false,
+    "**/scripts/**": false,
+    "**/.github/hooks/**": false,
+    "**/.claude/**": false
+  }
+}

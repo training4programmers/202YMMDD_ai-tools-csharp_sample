@@ -1,0 +1,37 @@
+# Prepares the environment for the GitHub Copilot cloud agent before it starts work on a task.
+# Copilot reads this file only from the default branch, and only a job named copilot-setup-steps.
+name: "Copilot Setup Steps"
+
+# Also runs as a normal workflow when this file changes, so you can see that the setup works,
+# and on demand from the Actions tab.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Install the .NET 10 SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      # Restoring and building here means the agent starts with packages downloaded and a warm build,
+      # instead of spending its session time (and your AI credits) doing it.
+      - name: Restore and build
+        run: |
+          dotnet restore Bookstore.slnx
+          dotnet build Bookstore.slnx --no-restore

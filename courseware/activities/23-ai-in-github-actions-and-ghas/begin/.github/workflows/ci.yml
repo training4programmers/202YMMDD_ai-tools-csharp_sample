@@ -1,0 +1,33 @@
+# Bookstore CI: build and test on every push to main and every pull request.
+# Activity 23 turns this into gates plus an advisory AI risk review and failure triage (see TASK.md).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore Bookstore.slnx
+
+      - name: Build
+        run: dotnet build Bookstore.slnx --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --solution Bookstore.slnx --no-build --configuration Release

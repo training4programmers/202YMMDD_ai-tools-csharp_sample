@@ -1,0 +1,57 @@
+# Sample requests for the ToolsApp colors API. Start the API first:
+#   dotnet run --project src/ToolsApp.Api
+# then click "Send Request" above any request (Visual Studio 2026, or VS Code with the REST Client extension).
+@host = http://localhost:5090
+
+### Health check
+GET {{host}}/health
+
+### All colors
+GET {{host}}/api/colors
+
+### Colors in one palette
+GET {{host}}/api/colors?paletteId=2
+
+### One color
+GET {{host}}/api/colors/1
+
+### Contrast of a color against white (the # is URL-encoded as %23)
+GET {{host}}/api/colors/4/contrast?against=%23FFFFFF
+
+### Create a color (shorthand hex is normalized to #RRGGBB)
+POST {{host}}/api/colors
+Content-Type: application/json
+
+{
+  "name": "Mint",
+  "hex": "#3EB489",
+  "paletteId": 2
+}
+
+### Create a color with a malformed hex (expect 400)
+POST {{host}}/api/colors
+Content-Type: application/json
+
+{
+  "name": "Not a color",
+  "hex": "#GG0000",
+  "paletteId": 1
+}
+
+### Palettes
+GET {{host}}/api/palettes
+
+### Colors in a palette
+GET {{host}}/api/palettes/3/colors
+
+### Export a palette as CSS custom properties
+GET {{host}}/api/palettes/2/export?format=css
+
+### Export a palette as JSON
+GET {{host}}/api/palettes/2/export?format=json
+
+### Export a palette as a GIMP palette (.gpl)
+GET {{host}}/api/palettes/2/export?format=gpl
+
+### Export with an unknown format (expect 400)
+GET {{host}}/api/palettes/2/export?format=pdf

@@ -1,0 +1,459 @@
+# Bookstore CI: deterministic gates, then an advisory AI risk review and failure triage.
+#
+# The AI jobs use the documented headless modes of Claude Code (`claude -p`) and GitHub Copilot CLI
+# (`copilot -p`). The AI_AGENT repository variable picks the agent for both AI jobs: claude (the
+# default) or copilot. The jobs that run an agent can't comment; separate posting jobs, with the
+# posting script from the base branch, do. See ci/README.md for setup and the security model.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Read-only by default. A job that needs a write scope asks for it in its own permissions block.
+permissions:
+  contents: read
+
+# One run per pull request (or branch). A new push to a pull request cancels its older run.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  SOLUTION: Bookstore.slnx
+  CLAUDE_CODE_VERSION: '2.1.301'
+  COPILOT_CLI_VERSION: '1.0.98'
+  # Cost controls. Claude Code: a model alias plus turn and spend caps. Copilot CLI: a model choice and
+  # an AI credit cap (--max-ai-credits; a soft cap, checked after each model response; minimum 30).
+  # Both: the job timeout and the input cap.
+  CLAUDE_MODEL: sonnet
+  COPILOT_MODEL: ''              # empty = the plan's default model; set one your organization enables
+  AGENT_MAX_TURNS: '4'
+  AGENT_MAX_BUDGET_USD: '0.40'
+  AGENT_MAX_AI_CREDITS: '30'
+  MAX_DIFF_CHARACTERS: '120000'
+
+jobs:
+  # ------------------------------------------------------------------------------------------------
+  # Gates: build and test, CodeQL, dependency review. A ruleset on main makes them required.
+  # ------------------------------------------------------------------------------------------------
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: |
+          New-Item -ItemType Directory -Force -Path logs | Out-Null
+          if (Get-ChildItem -Recurse -Filter packages.lock.json) {
+            dotnet restore $env:SOLUTION --locked-mode
+          } else {
+            dotnet restore $env:SOLUTION
+          }
+
+      - name: Build (warnings are errors)
+        run: |
+          dotnet build $env:SOLUTION --no-restore --configuration Release -warnaserror |
+            Tee-Object -FilePath logs/build.log
+          exit $LASTEXITCODE
+
+      - name: Test
+        run: |
+          dotnet test --solution $env:SOLUTION --no-build --configuration Release |
+            Tee-Object -FilePath logs/test.log
+          exit $LASTEXITCODE
+
+      - name: Check formatting
+        run: dotnet format $env:SOLUTION --verify-no-changes --no-restore
+
+      - name: Upload build and test logs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-logs
+          path: logs/
+          retention-days: 7
+
+  # CodeQL advanced setup; leave default setup off for this repository. No build needed for C#.
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read            # private repositories: read the workflow run
+      security-events: write   # upload the results to code scanning
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: csharp
+          build-mode: none
+
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:csharp
+
+  dependency-review:
+    name: Dependency review
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/dependency-review-action@v5
+
+  # ------------------------------------------------------------------------------------------------
+  # Advisory: AI risk review of the pull request. This job's token can read the code and make Copilot
+  # requests, nothing more. The review goes to an artifact; post-risk-review comments with it.
+  # ------------------------------------------------------------------------------------------------
+  risk-review:
+    name: AI risk review (advisory)
+    needs: build
+    if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: read
+      copilot-requests: write  # Copilot CLI only: its requests use this run's token
+    outputs:
+      ready: ${{ steps.claude.outputs.ready || steps.copilot.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0              # the diff against the base branch needs its history
+          persist-credentials: false  # keep the token out of .git/config
+
+      - name: Collect the diff
+        id: diff
+        env:
+          # Written by the pull request's author: untrusted data, passed through env:, never ${{ }} in run:.
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP review
+          New-Item -ItemType Directory -Force -Path $work | Out-Null
+          $range = "origin/$env:GITHUB_BASE_REF...HEAD"
+
+          # Cost control: skip pull requests that don't touch application code.
+          $changed = @(git diff --name-only $range)
+          if (-not ($changed | Where-Object { $_ -like 'src/*' })) {
+            Write-Output 'No changes under src/; skipping the risk review.'
+            'run=false' >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+
+          # Only src and tests, so lock files and docs don't spend the input budget.
+          $text = @(
+            '## Title and description (written by the pull request author)'
+            $env:PR_TITLE
+            $env:PR_BODY
+            '## Diff'
+            (git diff --stat $range | Out-String)
+            (git diff $range -- src tests | Out-String)
+          ) -join "`n"
+          $limit = [int]$env:MAX_DIFF_CHARACTERS
+          if ($text.Length -gt $limit) {
+            $text = $text.Substring(0, $limit) + "`n[diff truncated at $limit characters]"
+          }
+
+          Set-Content -Path (Join-Path $work pr.diff) -Value $text -Encoding utf8
+          Copy-Item ci/prompts/risk-review.md (Join-Path $work prompt.md)
+          'run=true' >> $env:GITHUB_OUTPUT
+
+      - uses: actions/setup-node@v7
+        if: ${{ steps.diff.outputs.run == 'true' }}
+        with:
+          node-version: 24
+
+      # Claude Code, the default when AI_AGENT isn't set to copilot.
+      - name: Install Claude Code
+        if: ${{ steps.diff.outputs.run == 'true' && vars.AI_AGENT != 'copilot' }}
+        run: npm install --global "@anthropic-ai/claude-code@$env:CLAUDE_CODE_VERSION"
+
+      - name: Review the diff (claude -p)
+        id: claude
+        if: ${{ steps.diff.outputs.run == 'true' && vars.AI_AGENT != 'copilot' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP review
+          if (-not $env:ANTHROPIC_API_KEY) {
+            Write-Output '::warning::ANTHROPIC_API_KEY is not available to this run; skipping the review.'
+            exit 0
+          }
+
+          # The diff arrives on stdin and the model gets no tools at all. --bare skips any CLAUDE.md,
+          # hooks, or .mcp.json that the pull request might have added.
+          Get-Content -Raw (Join-Path $work pr.diff) |
+            claude --bare -p (Get-Content -Raw (Join-Path $work prompt.md)) `
+              --tools "" `
+              --model $env:CLAUDE_MODEL `
+              --max-turns $env:AGENT_MAX_TURNS `
+              --max-budget-usd $env:AGENT_MAX_BUDGET_USD `
+              --permission-mode dontAsk `
+              --no-session-persistence `
+              --output-format text |
+            Out-File -FilePath (Join-Path $work review.md) -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # A failed run (no auth, a turn or spend cap) prints its error on stdout. Don't post it.
+            Remove-Item (Join-Path $work review.md) -ErrorAction SilentlyContinue
+            Write-Output "::warning::claude -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      # GitHub Copilot CLI, when the AI_AGENT repository variable is copilot.
+      - name: Install GitHub Copilot CLI
+        if: ${{ steps.diff.outputs.run == 'true' && vars.AI_AGENT == 'copilot' }}
+        run: npm install --global "@github/copilot@$env:COPILOT_CLI_VERSION"
+
+      - name: Review the diff (copilot -p)
+        id: copilot
+        if: ${{ steps.diff.outputs.run == 'true' && vars.AI_AGENT == 'copilot' }}
+        env:
+          # The run's own token. copilot-requests: write lets it make Copilot requests, billed to the
+          # organization in AI credits; contents: read is all else it can do.
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_AUTO_UPDATE: 'false'
+        run: |
+          # Run from a folder that holds only the diff and the prompt. File reads stay inside it; the
+          # shell, file writes, URLs, and the built-in GitHub MCP server are all off, and
+          # --no-custom-instructions ignores any AGENTS.md or instruction files.
+          Set-Location (Join-Path $env:RUNNER_TEMP review)
+          $prompt = (Get-Content -Raw prompt.md) + "`n`nThe pull request to review is in the file pr.diff in the current directory."
+          $modelArgs = if ($env:COPILOT_MODEL) { @('--model', $env:COPILOT_MODEL) } else { @() }
+          copilot -p $prompt -s --no-ask-user --no-custom-instructions --disable-builtin-mcps `
+              --disallow-temp-dir `
+              --deny-tool='shell' `
+              --deny-tool='write' `
+              --deny-tool='url' `
+              --max-ai-credits $env:AGENT_MAX_AI_CREDITS `
+              @modelArgs |
+            Out-File -FilePath review.md -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # Don't post whatever a failed run printed as if it were a review.
+            Remove-Item review.md -ErrorAction SilentlyContinue
+            Write-Output "::warning::copilot -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      - name: Upload the review
+        if: ${{ steps.claude.outputs.ready == 'true' || steps.copilot.outputs.ready == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-risk-review
+          path: ${{ runner.temp }}/review/review.md
+          retention-days: 7
+
+  # Posts the review. This job's token may comment; it runs a script, never a model.
+  post-risk-review:
+    name: Post the risk review (advisory)
+    needs: risk-review
+    # !cancelled() keeps this job from inheriting success(), which is false whenever build failed
+    # earlier in the chain; the review is just as useful on a pull request that doesn't build.
+    if: ${{ !cancelled() && needs.risk-review.outputs.ready == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # The base commit, not the pull request: the script that runs with the write token is the
+      # reviewed one on the base branch, whatever the pull request changed under scripts/.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: ai-risk-review
+          path: ${{ runner.temp }}/review
+
+      - name: Post the review to the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          ./scripts/post-pr-comment.ps1 -BodyPath (Join-Path $env:RUNNER_TEMP review/review.md) `
+            -PullRequest $env:PR_NUMBER -Marker ai-risk-review
+
+  # ------------------------------------------------------------------------------------------------
+  # Advisory: AI triage when the build job fails, with the agent AI_AGENT picks. This job's token can
+  # read the code and make Copilot requests, nothing more; post-failure-triage comments with the note.
+  # ------------------------------------------------------------------------------------------------
+  failure-triage:
+    name: AI failure triage (advisory)
+    needs: build
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: read
+      copilot-requests: write  # Copilot CLI only: its requests use this run's token
+    outputs:
+      ready: ${{ steps.claude.outputs.ready || steps.copilot.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-logs
+          path: ${{ runner.temp }}/build-logs
+
+      - name: Collect the log tails
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP triage
+          New-Item -ItemType Directory -Force -Path $work, (Join-Path $env:RUNNER_TEMP ai-triage) | Out-Null
+
+          # Only the tail of each log: the first error and its context are near the end.
+          Get-ChildItem (Join-Path $env:RUNNER_TEMP build-logs) -Filter *.log | ForEach-Object {
+            '===== {0} (last 300 lines) =====' -f $_.Name
+            Get-Content $_.FullName -Tail 300
+          } | Set-Content -Path (Join-Path $work logs.txt) -Encoding utf8
+          Copy-Item ci/prompts/failure-triage.md (Join-Path $work prompt.md)
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # Claude Code, the default when AI_AGENT isn't set to copilot.
+      - name: Install Claude Code
+        if: ${{ vars.AI_AGENT != 'copilot' }}
+        run: npm install --global "@anthropic-ai/claude-code@$env:CLAUDE_CODE_VERSION"
+
+      - name: Triage the failure (claude -p)
+        id: claude
+        if: ${{ vars.AI_AGENT != 'copilot' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          $in = Join-Path $env:RUNNER_TEMP triage
+          $out = Join-Path $env:RUNNER_TEMP ai-triage
+          if (-not $env:ANTHROPIC_API_KEY) {
+            Write-Output '::warning::ANTHROPIC_API_KEY is not available to this run; skipping triage.'
+            exit 0
+          }
+
+          # Read is the only tool. With dontAsk, reads inside the working directory (the checkout) run
+          # without approval, and anything that would prompt, including a read outside it, is denied.
+          # No allow rule for Read: a bare Read rule matches every file read, so injected log text
+          # could have the agent open /proc/self/environ, where the API key lives.
+          Get-Content -Raw (Join-Path $in logs.txt) |
+            claude --bare -p (Get-Content -Raw (Join-Path $in prompt.md)) `
+              --tools "Read" `
+              --model $env:CLAUDE_MODEL `
+              --max-turns $env:AGENT_MAX_TURNS `
+              --max-budget-usd $env:AGENT_MAX_BUDGET_USD `
+              --permission-mode dontAsk `
+              --no-session-persistence `
+              --output-format text |
+            Out-File -FilePath (Join-Path $out triage.md) -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # Keep the error for a person, under a name nothing posts.
+            Move-Item (Join-Path $out triage.md) (Join-Path $out triage-error.txt) -Force -ErrorAction SilentlyContinue
+            Write-Output "::warning::claude -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      # GitHub Copilot CLI, when the AI_AGENT repository variable is copilot.
+      - name: Install GitHub Copilot CLI
+        if: ${{ vars.AI_AGENT == 'copilot' }}
+        run: npm install --global "@github/copilot@$env:COPILOT_CLI_VERSION"
+
+      - name: Triage the failure (copilot -p)
+        id: copilot
+        if: ${{ vars.AI_AGENT == 'copilot' }}
+        env:
+          # The run's own token: copilot-requests: write and contents: read, nothing that can comment.
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_AUTO_UPDATE: 'false'
+        run: |
+          $out = Join-Path $env:RUNNER_TEMP ai-triage
+          # As in risk-review: run from a folder that holds only the log tails and the prompt, with the
+          # shell, file writes, URLs, and the built-in GitHub MCP server off. The checkout stays out of
+          # reach (adding it with --add-dir would also load its skills and agents as trusted
+          # configuration), so this agent works from the logs alone.
+          Set-Location (Join-Path $env:RUNNER_TEMP triage)
+          $prompt = (Get-Content -Raw prompt.md) + "`n`nThe log tails are in the file logs.txt in the current directory. The repository's files aren't available in this run."
+          $modelArgs = if ($env:COPILOT_MODEL) { @('--model', $env:COPILOT_MODEL) } else { @() }
+          copilot -p $prompt -s --no-ask-user --no-custom-instructions --disable-builtin-mcps `
+              --disallow-temp-dir `
+              --deny-tool='shell' `
+              --deny-tool='write' `
+              --deny-tool='url' `
+              --max-ai-credits $env:AGENT_MAX_AI_CREDITS `
+              @modelArgs |
+            Out-File -FilePath (Join-Path $out triage.md) -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            Move-Item (Join-Path $out triage.md) (Join-Path $out triage-error.txt) -Force -ErrorAction SilentlyContinue
+            Write-Output "::warning::copilot -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      - name: Upload the triage note
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-triage
+          path: ${{ runner.temp }}/ai-triage/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # Posts the triage on pull requests. Like post-risk-review: a script from the base branch, no model.
+  post-failure-triage:
+    name: Post the failure triage (advisory)
+    needs: failure-triage
+    # build failed, so without !cancelled() the implicit success() would always skip this job.
+    if: ${{ !cancelled() && github.event_name == 'pull_request' && needs.failure-triage.outputs.ready == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: ai-triage
+          path: ${{ runner.temp }}/ai-triage
+
+      - name: Post the triage to the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          ./scripts/post-pr-comment.ps1 -BodyPath (Join-Path $env:RUNNER_TEMP ai-triage/triage.md) `
+            -PullRequest $env:PR_NUMBER -Marker ai-failure-triage

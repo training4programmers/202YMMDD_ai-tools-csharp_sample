@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="e9c7beb2f1f5e00e"><![CDATA[
+{
+  "version": 1,
+  "title": "The verify loop",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "The Verify Loop: Let the Toolchain Say When It Is Done",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "Every failure is precise, machine-readable feedback the agent can act on; only all-green work reaches a human",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "gates",
+      "kind": "rect",
+      "x": 230.0,
+      "y": 160.0,
+      "w": 738.0,
+      "h": 170.0,
+      "text": "",
+      "style": {
+        "fill": "none",
+        "stroke": "#c9c7c1",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "gateslabel",
+      "x": 246.0,
+      "y": 170.0,
+      "text": "Gates, cheapest first: each one that passes hands on to the next; the first red one stops the run",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "agent",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 210.0,
+      "w": 160.0,
+      "h": 100.0,
+      "text": "Agent edits code\nthen reads the output and fixes the cause",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g1",
+      "kind": "rect",
+      "x": 246.0,
+      "y": 210.0,
+      "w": 150.0,
+      "h": 100.0,
+      "text": "dotnet build\ncompiler errors (CS0103, CS8602...)",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g2",
+      "kind": "rect",
+      "x": 424.0,
+      "y": 210.0,
+      "w": 150.0,
+      "h": 100.0,
+      "text": "Analyzers\nCA / IDE warnings, treated as errors",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g3",
+      "kind": "rect",
+      "x": 602.0,
+      "y": 210.0,
+      "w": 150.0,
+      "h": 100.0,
+      "text": "dotnet test --solution\nfailing tests with expected vs actual",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g4",
+      "kind": "rect",
+      "x": 780.0,
+      "y": 210.0,
+      "w": 172.0,
+      "h": 100.0,
+      "text": "dotnet format\n--verify-no-changes",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "agent",
+      "to": "g1",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "feedback",
+      "from": "gates",
+      "to": "agent",
+      "from_side": "top",
+      "to_side": "top",
+      "label": "any gate fails: its exact output goes back to the agent",
+      "label_at": 0.3,
+      "style": {
+        "fill": null,
+        "stroke": "#c93434",
+        "stroke_width": 2.0,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "review",
+      "kind": "stadium",
+      "x": 760.0,
+      "y": 400.0,
+      "w": 208.0,
+      "h": 80.0,
+      "text": "Human review\ngit diff · tests unchanged · PR",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn5",
+      "from": "g4",
+      "to": "review",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "label": "all green"
+    },
+    {
+      "type": "shape",
+      "id": "hooks",
+      "kind": "note",
+      "x": 40.0,
+      "y": 380.0,
+      "w": 360.0,
+      "h": 120.0,
+      "text": "Make it automatic\nPostToolUse hook: dotnet format after each edit\nPreToolUse guard: existing tests stay read-only\nCI: the same gates run again on the pull request",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": "left",
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "rules",
+      "kind": "note",
+      "x": 424.0,
+      "y": 380.0,
+      "w": 300.0,
+      "h": 120.0,
+      "text": "Rules the agent gets\nfix the code, not the test\nno solution-wide rule switch-offs\none-sentence root cause per fix",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": "left",
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn6",
+      "from": "g1",
+      "to": "g2",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn7",
+      "from": "g2",
+      "to": "g3",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn8",
+      "from": "g3",
+      "to": "g4",
+      "route": "straight"
+    }
+  ],
+  "next_id": {
+    "conn": 8
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M200 260L237 260" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M246 260L236 264L236 256Z" fill="#6b6a66"/></g>
+<g id="feedback"><path d="M599 160L599 144L120 144L120 198" fill="none" stroke="#c93434" stroke-width="2"/><path d="M120 210L114.67 196.67L125.33 196.67Z" fill="#c93434"/><rect x="293.08" y="134.38" width="314.44" height="19.25" rx="2" fill="#ffffff"/><text x="450.3" y="148.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="450.3" dy="0">any gate fails: its exact output goes back to the agent</tspan></text></g>
+<g id="conn5"><path d="M866 310L864.2 391" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M864 400L860.22 389.91L868.22 390.09Z" fill="#6b6a66"/><rect x="836.98" y="340.88" width="56.25" height="19.25" rx="2" fill="#ffffff"/><text x="865.1" y="355.38" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="865.1" dy="0">all green</tspan></text></g>
+<g id="conn6"><path d="M396 260L415 260" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M424 260L414 264L414 256Z" fill="#6b6a66"/></g>
+<g id="conn7"><path d="M574 260L593 260" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M602 260L592 264L592 256Z" fill="#6b6a66"/></g>
+<g id="conn8"><path d="M752 260L771 260" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M780 260L770 264L770 256Z" fill="#6b6a66"/></g>
+<g id="title"><text x="347.08" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="347.08" dy="0">The Verify Loop: Let the Toolchain Say When It Is Done</tspan></text></g>
+<g id="subtitle"><text x="386.35" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="386.35" dy="0">Every failure is precise, machine-readable feedback the agent can act on; only all-green work reaches a human</tspan></text></g>
+<g id="gates"><path d="M240 160H958A10 10 0 0 1 968 170V320A10 10 0 0 1 958 330H240A10 10 0 0 1 230 320V170A10 10 0 0 1 240 160Z" fill="none" stroke="#c9c7c1" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="gateslabel"><text x="512.08" y="182" font-family="IBM Plex Sans" font-size="12" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="512.08" dy="0">Gates, cheapest first: each one that passes hands on to the next; the first red one stops the run</tspan></text></g>
+<g id="agent"><path d="M50 210H190A10 10 0 0 1 200 220V300A10 10 0 0 1 190 310H50A10 10 0 0 1 40 300V220A10 10 0 0 1 50 210Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="120" y="248.63" font-family="IBM Plex Sans" font-size="13" fill="#7a2f0f" text-anchor="middle"><tspan x="120" dy="0">Agent edits code</tspan><tspan x="120" dy="16.25">then reads the output</tspan><tspan x="120" dy="16.25">and fixes the cause</tspan></text></g>
+<g id="g1"><path d="M256 210H386A10 10 0 0 1 396 220V300A10 10 0 0 1 386 310H256A10 10 0 0 1 246 300V220A10 10 0 0 1 256 210Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="321" y="248.63" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="321" dy="0">dotnet build</tspan><tspan x="321" dy="16.25">compiler errors</tspan><tspan x="321" dy="16.25">(CS0103, CS8602...)</tspan></text></g>
+<g id="g2"><path d="M434 210H564A10 10 0 0 1 574 220V300A10 10 0 0 1 564 310H434A10 10 0 0 1 424 300V220A10 10 0 0 1 434 210Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="499" y="248.63" font-family="IBM Plex Sans" font-size="13" fill="#0a4d36" text-anchor="middle"><tspan x="499" dy="0">Analyzers</tspan><tspan x="499" dy="16.25">CA / IDE warnings,</tspan><tspan x="499" dy="16.25">treated as errors</tspan></text></g>
+<g id="g3"><path d="M612 210H742A10 10 0 0 1 752 220V300A10 10 0 0 1 742 310H612A10 10 0 0 1 602 300V220A10 10 0 0 1 612 210Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="677" y="248.63" font-family="IBM Plex Sans" font-size="13" fill="#2a2160" text-anchor="middle"><tspan x="677" dy="0">dotnet test --solution</tspan><tspan x="677" dy="16.25">failing tests with</tspan><tspan x="677" dy="16.25">expected vs actual</tspan></text></g>
+<g id="g4"><path d="M790 210H942A10 10 0 0 1 952 220V300A10 10 0 0 1 942 310H790A10 10 0 0 1 780 300V220A10 10 0 0 1 790 210Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="866" y="256.75" font-family="IBM Plex Sans" font-size="13" fill="#25303a" text-anchor="middle"><tspan x="866" dy="0">dotnet format</tspan><tspan x="866" dy="16.25">--verify-no-changes</tspan></text></g>
+<g id="review"><path d="M800 400H928A40 40 0 0 1 968 440V440A40 40 0 0 1 928 480H800A40 40 0 0 1 760 440V440A40 40 0 0 1 800 400Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="864" y="436.75" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="864" dy="0">Human review</tspan><tspan x="864" dy="16.25">git diff · tests unchanged · PR</tspan></text></g>
+<g id="hooks"><path d="M40 380L382 380L400 398L400 500L40 500Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M382 380L382 398L400 398" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="50" y="420.5" font-family="IBM Plex Sans" font-size="13" fill="#5c4100" text-anchor="start"><tspan x="50" dy="0">Make it automatic</tspan><tspan x="50" dy="16.25">PostToolUse hook: dotnet format after each edit</tspan><tspan x="50" dy="16.25">PreToolUse guard: existing tests stay read-only</tspan><tspan x="50" dy="16.25">CI: the same gates run again on the pull request</tspan></text></g>
+<g id="rules"><path d="M424 380L706 380L724 398L724 500L424 500Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><path d="M706 380L706 398L724 398" fill="none" stroke="#898781" stroke-width="1.5"/><text x="434" y="420.5" font-family="IBM Plex Sans" font-size="13" fill="#3a3937" text-anchor="start"><tspan x="434" dy="0">Rules the agent gets</tspan><tspan x="434" dy="16.25">fix the code, not the test</tspan><tspan x="434" dy="16.25">no solution-wide rule switch-offs</tspan><tspan x="434" dy="16.25">one-sentence root cause per fix</tspan></text></g>
+</g>
+</svg>

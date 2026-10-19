@@ -1,0 +1,387 @@
+# ToolsApp CI: deterministic gates first, then advisory AI jobs.
+#
+# Gates (they decide): build and test with warnings as errors, CodeQL code scanning, and dependency
+# review. A ruleset on main makes them merge requirements (see ci/README.md).
+# AI jobs (they advise): a pull request summary, failure triage, and release notes. Each one may fail
+# without failing the run, is capped in turns, spend, and time, and sees only the secret or token
+# its own step needs. Read ci/README.md before you copy this into a real project.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Read-only by default. A job that needs a write scope asks for it in its own permissions block.
+permissions:
+  contents: read
+
+# One run per pull request (or branch). A new push to a pull request cancels its older run.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: pwsh
+
+env:
+  SOLUTION: ToolsApp.slnx
+  # Pin the agent CLI to a version you've tested, and bump it deliberately.
+  CLAUDE_CODE_VERSION: '2.1.301'
+  # Cost controls for every AI step: a balanced-tier model alias, a turn cap, and a spend cap.
+  AGENT_MODEL: sonnet
+  AGENT_MAX_TURNS: '4'
+  AGENT_MAX_BUDGET_USD: '0.50'
+
+jobs:
+  # ---------------------------------------------------------------------------------------------
+  # Gate 1: build, test, format. The logs are uploaded even on failure, for failure-triage to read.
+  # ---------------------------------------------------------------------------------------------
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: |
+          New-Item -ItemType Directory -Force -Path logs | Out-Null
+          # --locked-mode fails the restore if a packages.lock.json disagrees with the projects.
+          if (Get-ChildItem -Recurse -Filter packages.lock.json) {
+            dotnet restore $env:SOLUTION --locked-mode
+          } else {
+            dotnet restore $env:SOLUTION
+          }
+
+      - name: Build (warnings are errors)
+        # -warnaserror turns analyzer warnings into errors, for example EF1002 (SQL built from an
+        # interpolated string).
+        run: |
+          dotnet build $env:SOLUTION --no-restore --configuration Release -warnaserror |
+            Tee-Object -FilePath logs/build.log
+          exit $LASTEXITCODE
+
+      - name: Test
+        run: |
+          dotnet test --solution $env:SOLUTION --no-build --configuration Release |
+            Tee-Object -FilePath logs/test.log
+          exit $LASTEXITCODE
+
+      - name: Check formatting
+        run: dotnet format $env:SOLUTION --verify-no-changes --no-restore
+
+      - name: Upload build and test logs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-logs
+          path: logs/
+          retention-days: 7
+
+  # ---------------------------------------------------------------------------------------------
+  # Gate 2: CodeQL code scanning (advanced setup). C# needs no build with build-mode: none, so this
+  # runs beside build and still reports when the build fails. Leave CodeQL default setup off for
+  # this repository: use one setup or the other, never both.
+  # ---------------------------------------------------------------------------------------------
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read            # private repositories: read the workflow run
+      security-events: write   # upload the results to code scanning
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: csharp
+          build-mode: none
+
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:csharp
+
+  # ---------------------------------------------------------------------------------------------
+  # Gate 3 (pull requests): fail when the change adds a package with a known vulnerability.
+  # ---------------------------------------------------------------------------------------------
+  dependency-review:
+    name: Dependency review
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/dependency-review-action@v5
+
+  # ---------------------------------------------------------------------------------------------
+  # AI job 1 (pull requests): summarize the change for its reviewers and post it as a comment.
+  # The agent step gets the input as a file on stdin, no tools, and the API key. The posting step
+  # gets the GitHub token and runs a script, not a model: the base branch's copy of the script.
+  # ---------------------------------------------------------------------------------------------
+  pr-summary:
+    name: AI pull request summary (advisory)
+    needs: build
+    if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write     # used only by the posting step
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0              # the diff against the base branch needs its history
+          persist-credentials: false  # keep the token out of .git/config, where the agent could read it
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Claude Code
+        run: npm install --global "@anthropic-ai/claude-code@$env:CLAUDE_CODE_VERSION"
+
+      - name: Collect the pull request
+        env:
+          # Written by the pull request's author, so untrusted. It reaches the script only as
+          # environment variables and the agent only as data in a file: never as ${{ }} in run:.
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP ai
+          New-Item -ItemType Directory -Force -Path $work | Out-Null
+          $range = "origin/$env:GITHUB_BASE_REF...HEAD"
+
+          $text = @(
+            '## Title and description (written by the pull request author)'
+            $env:PR_TITLE
+            $env:PR_BODY
+            '## Diff'
+            (git diff --stat $range | Out-String)
+            (git diff $range | Out-String)
+          ) -join "`n"
+
+          # Cap the input: a huge diff costs more and summarizes worse.
+          $limit = 150000
+          if ($text.Length -gt $limit) {
+            $text = $text.Substring(0, $limit) + "`n[input truncated at $limit characters]"
+          }
+          Set-Content -Path (Join-Path $work pr-input.md) -Value $text -Encoding utf8
+
+      - name: Summarize the change (claude -p)
+        id: summary
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP ai
+          # Pull requests from forks get no secrets: skip with a warning instead of failing.
+          if (-not $env:ANTHROPIC_API_KEY) {
+            Write-Output '::warning::ANTHROPIC_API_KEY is not available to this run; skipping the summary.'
+            exit 0
+          }
+
+          # --bare skips CLAUDE.md, hooks, skills, and .mcp.json, which on a pull request come from
+          # the pull request. --tools "" leaves the model no tools: it can only return text.
+          Get-Content -Raw (Join-Path $work pr-input.md) |
+            claude --bare -p (Get-Content -Raw ci/prompts/pr-summary.md) `
+              --tools "" `
+              --model $env:AGENT_MODEL `
+              --max-turns $env:AGENT_MAX_TURNS `
+              --max-budget-usd $env:AGENT_MAX_BUDGET_USD `
+              --permission-mode dontAsk `
+              --no-session-persistence `
+              --output-format text |
+            Out-File -FilePath (Join-Path $work pr-summary.md) -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # A failed run (no auth, a turn or spend cap) prints its error on stdout. Don't post it.
+            Remove-Item (Join-Path $work pr-summary.md) -ErrorAction SilentlyContinue
+            Write-Output "::warning::claude -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      # The script that runs with the write token comes from the base commit, not the pull request,
+      # so a pull request that edits scripts/ can't change what posts.
+      - name: Check out the posting script from the base branch
+        if: ${{ steps.summary.outputs.ready == 'true' }}
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Post the summary to the pull request
+        # ready is set only when the agent exited 0, so an error message is never posted as a summary.
+        if: ${{ steps.summary.outputs.ready == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          ./base/scripts/post-pr-comment.ps1 -BodyPath (Join-Path $env:RUNNER_TEMP ai/pr-summary.md) `
+            -PullRequest $env:PR_NUMBER -Marker ai-pr-summary
+
+  # ---------------------------------------------------------------------------------------------
+  # AI job 2 (when build fails): read the end of the logs and suggest a likely cause.
+  # ---------------------------------------------------------------------------------------------
+  failure-triage:
+    name: AI failure triage (advisory)
+    needs: build
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write     # used only by the posting step, on pull requests
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-logs
+          path: ${{ runner.temp }}/build-logs
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Claude Code
+        run: npm install --global "@anthropic-ai/claude-code@$env:CLAUDE_CODE_VERSION"
+
+      - name: Triage the failure (claude -p)
+        id: triage
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP ai-triage
+          New-Item -ItemType Directory -Force -Path $work | Out-Null
+          if (-not $env:ANTHROPIC_API_KEY) {
+            Write-Output '::warning::ANTHROPIC_API_KEY is not available to this run; skipping triage.'
+            exit 0
+          }
+
+          # Only the tail of each log: the first error and its context are near the end.
+          $logs = Get-ChildItem (Join-Path $env:RUNNER_TEMP build-logs) -Filter *.log | ForEach-Object {
+            '===== {0} (last 300 lines) =====' -f $_.Name
+            Get-Content $_.FullName -Tail 300
+          } | Out-String
+
+          # Read is the only tool. With dontAsk, reads inside the working directory (the checkout) run
+          # without approval, and anything that would prompt, including a read outside it, is denied.
+          # No allow rule for Read: a bare Read rule matches every file read, so injected log text
+          # could have the agent open /proc/self/environ, where the API key lives.
+          $logs | claude --bare -p (Get-Content -Raw ci/prompts/failure-triage.md) `
+              --tools "Read" `
+              --model $env:AGENT_MODEL `
+              --max-turns $env:AGENT_MAX_TURNS `
+              --max-budget-usd $env:AGENT_MAX_BUDGET_USD `
+              --permission-mode dontAsk `
+              --no-session-persistence `
+              --output-format text |
+            Out-File -FilePath (Join-Path $work triage.md) -Encoding utf8
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # Keep the error for a person, under a name nothing posts.
+            Move-Item (Join-Path $work triage.md) (Join-Path $work triage-error.txt) -Force -ErrorAction SilentlyContinue
+            Write-Output "::warning::claude -p exited with code $code; nothing will be posted."
+            exit $code
+          }
+          'ready=true' >> $env:GITHUB_OUTPUT
+
+      - name: Upload the triage note
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-triage
+          path: ${{ runner.temp }}/ai-triage/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Check out the posting script from the base branch
+        if: ${{ steps.triage.outputs.ready == 'true' && github.event_name == 'pull_request' }}
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Post the triage to the pull request
+        if: ${{ steps.triage.outputs.ready == 'true' && github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          ./base/scripts/post-pr-comment.ps1 -BodyPath (Join-Path $env:RUNNER_TEMP ai-triage/triage.md) `
+            -PullRequest $env:PR_NUMBER -Marker ai-failure-triage
+
+  # ---------------------------------------------------------------------------------------------
+  # AI job 3 (pushes to main, after build and CodeQL pass): draft release notes for a person to edit.
+  # ---------------------------------------------------------------------------------------------
+  release-notes:
+    name: AI release notes draft (advisory)
+    needs: [build, codeql]
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0              # all history and tags, for git describe and git log
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Claude Code
+        run: npm install --global "@anthropic-ai/claude-code@$env:CLAUDE_CODE_VERSION"
+
+      - name: Draft release notes (claude -p)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP release-notes
+          New-Item -ItemType Directory -Force -Path $work | Out-Null
+          if (-not $env:ANTHROPIC_API_KEY) {
+            Write-Output '::warning::ANTHROPIC_API_KEY is not available to this run; skipping release notes.'
+            exit 0
+          }
+
+          # Commits since the last tag, or the last 50 if the repository has no tags yet.
+          $lastTag = git describe --tags --abbrev=0 2>$null
+          $range = if ($LASTEXITCODE -eq 0 -and $lastTag) { "$lastTag..HEAD" } else { '-50' }
+          $commits = git log --no-merges --pretty=format:'%h %s%n%b' $range | Out-String
+
+          $commits | claude --bare -p (Get-Content -Raw ci/prompts/release-notes.md) `
+              --tools "" `
+              --model $env:AGENT_MODEL `
+              --max-turns $env:AGENT_MAX_TURNS `
+              --max-budget-usd $env:AGENT_MAX_BUDGET_USD `
+              --permission-mode dontAsk `
+              --no-session-persistence `
+              --output-format text |
+            Out-File -FilePath (Join-Path $work release-notes.md) -Encoding utf8
+          exit $LASTEXITCODE
+
+      - name: Upload the draft for review
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-notes-draft
+          path: ${{ runner.temp }}/release-notes/
+          if-no-files-found: ignore
+          retention-days: 30

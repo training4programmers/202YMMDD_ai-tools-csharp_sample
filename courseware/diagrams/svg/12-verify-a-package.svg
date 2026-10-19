@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="38eaacf9a72cf6db"><![CDATA[
+{
+  "version": 1,
+  "title": "Verify a package before you add it",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "Verify a Package Before You Add It",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "An AI-suggested dependency is a decision you own: four checks, and any failure stops the change",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "start",
+      "kind": "stadium",
+      "x": 40.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "AI suggests\ndotnet add package X",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "exists",
+      "kind": "rect",
+      "x": 198.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "Does it exist?\nsearch nuget.org\n--exact-match",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "trust",
+      "kind": "rect",
+      "x": 356.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "Can you trust it?\nowner · downloads\nrepo · recent releases",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "api",
+      "kind": "rect",
+      "x": 514.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "Does the API exist?\ncompile a spike\nagainst that version",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "allowed",
+      "kind": "rect",
+      "x": 672.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "Is it allowed?\napproved list · license\nsource mapping",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "add",
+      "kind": "stadium",
+      "x": 830.0,
+      "y": 150.0,
+      "w": 140.0,
+      "h": 110.0,
+      "text": "Add it\npin the version centrally\n+ lock file",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "start",
+      "to": "exists",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn2",
+      "from": "exists",
+      "to": "trust",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn3",
+      "from": "trust",
+      "to": "api",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn4",
+      "from": "api",
+      "to": "allowed",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn5",
+      "from": "allowed",
+      "to": "add",
+      "route": "straight"
+    },
+    {
+      "type": "shape",
+      "id": "reject",
+      "kind": "rect",
+      "x": 198.0,
+      "y": 360.0,
+      "w": 614.0,
+      "h": 70.0,
+      "text": "Reject and report\nrecord the evidence · tell the assistant what was wrong · use the BCL instead",
+      "style": {
+        "fill": "#fbe3e3",
+        "stroke": "#c93434",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a1d1d",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "b1",
+      "kind": "rect",
+      "x": 267.0,
+      "y": 359.0,
+      "w": 2.0,
+      "h": 2.0,
+      "style": {
+        "fill": "none",
+        "stroke": "none",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "b2",
+      "kind": "rect",
+      "x": 425.0,
+      "y": 359.0,
+      "w": 2.0,
+      "h": 2.0,
+      "style": {
+        "fill": "none",
+        "stroke": "none",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "b3",
+      "kind": "rect",
+      "x": 583.0,
+      "y": 359.0,
+      "w": 2.0,
+      "h": 2.0,
+      "style": {
+        "fill": "none",
+        "stroke": "none",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "b4",
+      "kind": "rect",
+      "x": 741.0,
+      "y": 359.0,
+      "w": 2.0,
+      "h": 2.0,
+      "style": {
+        "fill": "none",
+        "stroke": "none",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn6",
+      "from": "exists",
+      "to": "b1",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "label": "no",
+      "style": {
+        "fill": null,
+        "stroke": "#c93434",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn7",
+      "from": "trust",
+      "to": "b2",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "label": "no",
+      "style": {
+        "fill": null,
+        "stroke": "#c93434",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn8",
+      "from": "api",
+      "to": "b3",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "label": "no",
+      "style": {
+        "fill": null,
+        "stroke": "#c93434",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn9",
+      "from": "allowed",
+      "to": "b4",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "label": "no",
+      "style": {
+        "fill": null,
+        "stroke": "#c93434",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "note1",
+      "kind": "note",
+      "x": 198.0,
+      "y": 470.0,
+      "w": 360.0,
+      "h": 80.0,
+      "text": "\"No results\" today isn't safe forever: anyone can register a name models invent (slopsquatting). Reject it; don't wait for it to appear.",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "note2",
+      "kind": "note",
+      "x": 610.0,
+      "y": 470.0,
+      "w": 360.0,
+      "h": 80.0,
+      "text": "Ask first: do we need a package at all? Many AI-suggested packages replace twenty lines of code the BCL can already write.",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    }
+  ],
+  "next_id": {
+    "conn": 9
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M180 205L189 205" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M198 205L188 209L188 201Z" fill="#6b6a66"/></g>
+<g id="conn2"><path d="M338 205L347 205" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M356 205L346 209L346 201Z" fill="#6b6a66"/></g>
+<g id="conn3"><path d="M496 205L505 205" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M514 205L504 209L504 201Z" fill="#6b6a66"/></g>
+<g id="conn4"><path d="M654 205L663 205" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M672 205L662 209L662 201Z" fill="#6b6a66"/></g>
+<g id="conn5"><path d="M812 205L821 205" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M830 205L820 209L820 201Z" fill="#6b6a66"/></g>
+<g id="conn6"><path d="M268 260L268 350" fill="none" stroke="#c93434" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M268 359L264 349L272 349Z" fill="#c93434"/><rect x="257.67" y="295.38" width="20.66" height="19.25" rx="2" fill="#ffffff"/><text x="268" y="309.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="268" dy="0">no</tspan></text></g>
+<g id="conn7"><path d="M426 260L426 350" fill="none" stroke="#c93434" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M426 359L422 349L430 349Z" fill="#c93434"/><rect x="415.67" y="295.38" width="20.66" height="19.25" rx="2" fill="#ffffff"/><text x="426" y="309.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="426" dy="0">no</tspan></text></g>
+<g id="conn8"><path d="M584 260L584 350" fill="none" stroke="#c93434" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M584 359L580 349L588 349Z" fill="#c93434"/><rect x="573.67" y="295.38" width="20.66" height="19.25" rx="2" fill="#ffffff"/><text x="584" y="309.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="584" dy="0">no</tspan></text></g>
+<g id="conn9"><path d="M742 260L742 350" fill="none" stroke="#c93434" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M742 359L738 349L746 349Z" fill="#c93434"/><rect x="731.67" y="295.38" width="20.66" height="19.25" rx="2" fill="#ffffff"/><text x="742" y="309.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="742" dy="0">no</tspan></text></g>
+<g id="title"><text x="235.77" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="235.77" dy="0">Verify a Package Before You Add It</tspan></text></g>
+<g id="subtitle"><text x="345.4" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="345.4" dy="0">An AI-suggested dependency is a decision you own: four checks, and any failure stops the change</tspan></text></g>
+<g id="start"><path d="M95 150H125A55 55 0 0 1 180 205V205A55 55 0 0 1 125 260H95A55 55 0 0 1 40 205V205A55 55 0 0 1 95 150Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><text x="110" y="202" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="110" dy="0">AI suggests</tspan><tspan x="110" dy="15">dotnet add package X</tspan></text></g>
+<g id="exists"><path d="M208 150H328A10 10 0 0 1 338 160V250A10 10 0 0 1 328 260H208A10 10 0 0 1 198 250V160A10 10 0 0 1 208 150Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="268" y="194.5" font-family="IBM Plex Sans" font-size="12" fill="#10386b" text-anchor="middle"><tspan x="268" dy="0">Does it exist?</tspan><tspan x="268" dy="15">search nuget.org</tspan><tspan x="268" dy="15">--exact-match</tspan></text></g>
+<g id="trust"><path d="M366 150H486A10 10 0 0 1 496 160V250A10 10 0 0 1 486 260H366A10 10 0 0 1 356 250V160A10 10 0 0 1 366 150Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="426" y="194.5" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="426" dy="0">Can you trust it?</tspan><tspan x="426" dy="15">owner · downloads</tspan><tspan x="426" dy="15">repo · recent releases</tspan></text></g>
+<g id="api"><path d="M524 150H644A10 10 0 0 1 654 160V250A10 10 0 0 1 644 260H524A10 10 0 0 1 514 250V160A10 10 0 0 1 524 150Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="584" y="194.5" font-family="IBM Plex Sans" font-size="12" fill="#0a4d36" text-anchor="middle"><tspan x="584" dy="0">Does the API exist?</tspan><tspan x="584" dy="15">compile a spike</tspan><tspan x="584" dy="15">against that version</tspan></text></g>
+<g id="allowed"><path d="M682 150H802A10 10 0 0 1 812 160V250A10 10 0 0 1 802 260H682A10 10 0 0 1 672 250V160A10 10 0 0 1 682 150Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="742" y="194.5" font-family="IBM Plex Sans" font-size="12" fill="#2a2160" text-anchor="middle"><tspan x="742" dy="0">Is it allowed?</tspan><tspan x="742" dy="15">approved list · license</tspan><tspan x="742" dy="15">source mapping</tspan></text></g>
+<g id="add"><path d="M885 150H915A55 55 0 0 1 970 205V205A55 55 0 0 1 915 260H885A55 55 0 0 1 830 205V205A55 55 0 0 1 885 150Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="900" y="187" font-family="IBM Plex Sans" font-size="12" fill="#1c4d1c" text-anchor="middle"><tspan x="900" dy="0">Add it</tspan><tspan x="900" dy="15">pin the version</tspan><tspan x="900" dy="15">centrally</tspan><tspan x="900" dy="15">+ lock file</tspan></text></g>
+<g id="reject"><path d="M208 360H802A10 10 0 0 1 812 370V420A10 10 0 0 1 802 430H208A10 10 0 0 1 198 420V370A10 10 0 0 1 208 360Z" fill="#fbe3e3" stroke="#c93434" stroke-width="1.5"/><text x="505" y="391.75" font-family="IBM Plex Sans" font-size="13" fill="#7a1d1d" text-anchor="middle"><tspan x="505" dy="0">Reject and report</tspan><tspan x="505" dy="16.25">record the evidence · tell the assistant what was wrong · use the BCL instead</tspan></text></g>
+<g id="b1"><path d="M267 359H269V361H267Z" fill="none" stroke="none" stroke-width="1.5"/></g>
+<g id="b2"><path d="M425 359H427V361H425Z" fill="none" stroke="none" stroke-width="1.5"/></g>
+<g id="b3"><path d="M583 359H585V361H583Z" fill="none" stroke="none" stroke-width="1.5"/></g>
+<g id="b4"><path d="M741 359H743V361H741Z" fill="none" stroke="none" stroke-width="1.5"/></g>
+<g id="note1"><path d="M198 470L540.4 470L558 487.6L558 550L198 550Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M540.4 470L540.4 487.6L558 487.6" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="378" y="498.63" font-family="IBM Plex Sans" font-size="13" fill="#5c4100" text-anchor="middle"><tspan x="378" dy="0">"No results" today isn't safe forever: anyone can register a</tspan><tspan x="378" dy="16.25">name models invent (slopsquatting). Reject it; don't wait</tspan><tspan x="378" dy="16.25">for it to appear.</tspan></text></g>
+<g id="note2"><path d="M610 470L952.4 470L970 487.6L970 550L610 550Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><path d="M952.4 470L952.4 487.6L970 487.6" fill="none" stroke="#5b6672" stroke-width="1.5"/><text x="790" y="498.63" font-family="IBM Plex Sans" font-size="13" fill="#25303a" text-anchor="middle"><tspan x="790" dy="0">Ask first: do we need a package at all? Many AI-suggested</tspan><tspan x="790" dy="16.25">packages replace twenty lines of code the BCL can already</tspan><tspan x="790" dy="16.25">write.</tspan></text></g>
+</g>
+</svg>

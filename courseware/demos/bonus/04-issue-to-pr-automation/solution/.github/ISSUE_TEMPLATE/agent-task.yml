@@ -1,0 +1,46 @@
+name: Agent-ready task
+description: A small, fully specified change that a coding agent (or a new teammate) can pick up without asking.
+title: "[Task]: "
+labels: ["agent-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write this for a reader with no context. An agent can't ask what you meant: everything it needs to
+        get to a reviewable pull request has to be in this issue, AGENTS.md, or the code it points to.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should change and why, in two or three sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Contract
+      description: The exact behavior. For an endpoint, the route, parameters and their limits, a sample response, and every error status.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: A checklist the pull request must meet. Include the tests you expect and the commands that must pass.
+      value: |
+        - [ ] ...
+        - [ ] Tests cover the new behavior, including the error cases.
+        - [ ] `dotnet build` has no warnings and `dotnet test --solution ToolsApp.slnx` passes.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and out of scope
+      description: What the change must not do, such as new packages, changes to existing endpoints, or edits to existing tests.
+  - type: textarea
+    id: pointers
+    attributes:
+      label: Pointers
+      description: Files to read first and existing code to copy the pattern from.

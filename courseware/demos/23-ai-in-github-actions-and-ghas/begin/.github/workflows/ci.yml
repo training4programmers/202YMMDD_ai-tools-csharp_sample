@@ -1,0 +1,33 @@
+# ToolsApp CI: build and test on every push to main and every pull request.
+# Demo 23 grows this into gates (warnings as errors, CodeQL, dependency review) plus advisory AI jobs.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore ToolsApp.slnx
+
+      - name: Build
+        run: dotnet build ToolsApp.slnx --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --solution ToolsApp.slnx --no-build --configuration Release

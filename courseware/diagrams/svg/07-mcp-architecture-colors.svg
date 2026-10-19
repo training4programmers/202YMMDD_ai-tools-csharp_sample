@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="74468ccc7b44818d"><![CDATA[
+{
+  "version": 1,
+  "title": "MCP architecture",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "MCP: Connecting Agents to Your Tools and Data",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "The host runs one MCP client per server; each server exposes tools and resources over JSON-RPC",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "host",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 112.0,
+      "w": 420.0,
+      "h": 360.0,
+      "text": "",
+      "style": {
+        "fill": "none",
+        "stroke": "#c9c7c1",
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "hostlabel",
+      "x": 56.0,
+      "y": 122.0,
+      "text": "Host: VS Code, Visual Studio, Copilot CLI, or Claude Code",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "model",
+      "kind": "rect",
+      "x": 64.0,
+      "y": 160.0,
+      "w": 170.0,
+      "h": 90.0,
+      "text": "Model + agent loop\ndecides when to call a tool",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "client",
+      "kind": "rect",
+      "x": 280.0,
+      "y": 250.0,
+      "w": 170.0,
+      "h": 90.0,
+      "text": "MCP client\none connection per server",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "config",
+      "kind": "note",
+      "x": 60.0,
+      "y": 340.0,
+      "w": 196.0,
+      "h": 100.0,
+      "text": "Server config (you choose)\n.mcp.json: Claude Code\n.vscode/mcp.json: VS Code, VS",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "local",
+      "kind": "rect",
+      "x": 590.0,
+      "y": 130.0,
+      "w": 240.0,
+      "h": 110.0,
+      "text": "Local server (stdio)\nToolsApp.Mcp via dotnet run\ntools: find_colors, check_contrast",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "remote",
+      "kind": "rect",
+      "x": 590.0,
+      "y": 330.0,
+      "w": 240.0,
+      "h": 110.0,
+      "text": "Remote server (HTTP)\nGitHub MCP server\ntools for issues, PRs, repos",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "db",
+      "kind": "cylinder",
+      "x": 858.0,
+      "y": 140.0,
+      "w": 110.0,
+      "h": 90.0,
+      "text": "toolsapp.db\nread-only",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ado",
+      "kind": "cylinder",
+      "x": 858.0,
+      "y": 340.0,
+      "w": 110.0,
+      "h": 90.0,
+      "text": "github.com\n<your-org>",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "rule",
+      "kind": "stadium",
+      "x": 40.0,
+      "y": 500.0,
+      "w": 928.0,
+      "h": 56.0,
+      "text": "The agent decides when to call a tool; you decide which servers it may use, which of their tools are on, and what each server can reach",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn11",
+      "from": "local",
+      "to": "db",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn12",
+      "from": "remote",
+      "to": "ado",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn13",
+      "from": "model",
+      "to": "client",
+      "from_side": "right",
+      "to_side": "top",
+      "start_arrow": "arrow",
+      "label": "tool calls / results",
+      "label_at": 0.8
+    },
+    {
+      "type": "connector",
+      "id": "conn14",
+      "from": "config",
+      "to": "client",
+      "from_side": "right",
+      "to_side": "bottom",
+      "label": "reads",
+      "label_at": 0.35,
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn15",
+      "from": "client",
+      "to": "local",
+      "from_side": "right",
+      "to_side": "left",
+      "label": "stdio",
+      "label_at": 0.75
+    },
+    {
+      "type": "connector",
+      "id": "conn16",
+      "from": "client",
+      "to": "remote",
+      "from_side": "right",
+      "to_side": "left",
+      "label": "HTTPS + token",
+      "label_at": 0.75
+    }
+  ],
+  "next_id": {
+    "conn": 16
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn11"><path d="M830 185L849 185" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M858 185L848 189L848 181Z" fill="#6b6a66"/></g>
+<g id="conn12"><path d="M830 385L849 385" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M858 385L848 389L848 381Z" fill="#6b6a66"/></g>
+<g id="conn13"><path d="M243 205L365 205L365 241" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M365 250L361 240L369 240Z" fill="#6b6a66"/><path d="M234 205L244 201L244 209Z" fill="#6b6a66"/><rect x="310.23" y="199.78" width="109.53" height="19.25" rx="2" fill="#ffffff"/><text x="365" y="214.28" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="365" dy="0">tool calls / results</tspan></text></g>
+<g id="conn14"><path d="M256 390L365 390L365 349" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M365 340L369 350L361 350Z" fill="#6b6a66"/><rect x="289.17" y="380.38" width="38.66" height="19.25" rx="2" fill="#ffffff"/><text x="308.5" y="394.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="308.5" dy="0">reads</tspan></text></g>
+<g id="conn15"><path d="M450 295L520 295L520 185L581 185" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M590 185L580 189L580 181Z" fill="#6b6a66"/><rect x="503.34" y="175.38" width="34.82" height="19.25" rx="2" fill="#ffffff"/><text x="520.75" y="189.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="520.75" dy="0">stdio</tspan></text></g>
+<g id="conn16"><path d="M450 295L520 295L520 385L581 385" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M590 385L580 389L580 381Z" fill="#6b6a66"/><rect x="479.41" y="375.38" width="92.67" height="19.25" rx="2" fill="#ffffff"/><text x="525.75" y="389.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="525.75" dy="0">HTTPS + token</tspan></text></g>
+<g id="title"><text x="306.66" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="306.66" dy="0">MCP: Connecting Agents to Your Tools and Data</tspan></text></g>
+<g id="subtitle"><text x="346.01" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="346.01" dy="0">The host runs one MCP client per server; each server exposes tools and resources over JSON-RPC</tspan></text></g>
+<g id="host"><path d="M50 112H450A10 10 0 0 1 460 122V462A10 10 0 0 1 450 472H50A10 10 0 0 1 40 462V122A10 10 0 0 1 50 112Z" fill="none" stroke="#c9c7c1" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="hostlabel"><text x="216.33" y="134" font-family="IBM Plex Sans" font-size="12" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="216.33" dy="0">Host: VS Code, Visual Studio, Copilot CLI, or Claude Code</tspan></text></g>
+<g id="model"><path d="M74 160H224A10 10 0 0 1 234 170V240A10 10 0 0 1 224 250H74A10 10 0 0 1 64 240V170A10 10 0 0 1 74 160Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="149" y="193.63" font-family="IBM Plex Sans" font-size="13" fill="#2a2160" text-anchor="middle"><tspan x="149" dy="0">Model + agent loop</tspan><tspan x="149" dy="16.25">decides when to call a</tspan><tspan x="149" dy="16.25">tool</tspan></text></g>
+<g id="client"><path d="M290 250H440A10 10 0 0 1 450 260V330A10 10 0 0 1 440 340H290A10 10 0 0 1 280 330V260A10 10 0 0 1 290 250Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="365" y="283.63" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="365" dy="0">MCP client</tspan><tspan x="365" dy="16.25">one connection per</tspan><tspan x="365" dy="16.25">server</tspan></text></g>
+<g id="config"><path d="M60 340L238 340L256 358L256 440L60 440Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M238 340L238 358L256 358" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="158" y="379.5" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="middle"><tspan x="158" dy="0">Server config (you choose)</tspan><tspan x="158" dy="15">.mcp.json: Claude Code</tspan><tspan x="158" dy="15">.vscode/mcp.json: VS Code, VS</tspan></text></g>
+<g id="local"><path d="M600 130H820A10 10 0 0 1 830 140V230A10 10 0 0 1 820 240H600A10 10 0 0 1 590 230V140A10 10 0 0 1 600 130Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="710" y="173.63" font-family="IBM Plex Sans" font-size="13" fill="#0a4d36" text-anchor="middle"><tspan x="710" dy="0">Local server (stdio)</tspan><tspan x="710" dy="16.25">ToolsApp.Mcp via dotnet run</tspan><tspan x="710" dy="16.25">tools: find_colors, check_contrast</tspan></text></g>
+<g id="remote"><path d="M600 330H820A10 10 0 0 1 830 340V430A10 10 0 0 1 820 440H600A10 10 0 0 1 590 430V340A10 10 0 0 1 600 330Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="710" y="373.63" font-family="IBM Plex Sans" font-size="13" fill="#7a2f0f" text-anchor="middle"><tspan x="710" dy="0">Remote server (HTTP)</tspan><tspan x="710" dy="16.25">GitHub MCP server</tspan><tspan x="710" dy="16.25">tools for issues, PRs, repos</tspan></text></g>
+<g id="db"><path d="M858 149.9V220.1A55 9.9 0 0 0 968 220.1V149.9" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><path d="M858 149.9A55 9.9 0 0 0 968 149.9A55 9.9 0 0 0 858 149.9Z" fill="none" stroke="#5b6672" stroke-width="1.5"/><text x="913" y="191.9" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="913" dy="0">toolsapp.db</tspan><tspan x="913" dy="15">read-only</tspan></text></g>
+<g id="ado"><path d="M858 349.9V420.1A55 9.9 0 0 0 968 420.1V349.9" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><path d="M858 349.9A55 9.9 0 0 0 968 349.9A55 9.9 0 0 0 858 349.9Z" fill="none" stroke="#898781" stroke-width="1.5"/><text x="913" y="391.9" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="913" dy="0">github.com</tspan><tspan x="913" dy="15">&lt;your-org&gt;</tspan></text></g>
+<g id="rule"><path d="M68 500H940A28 28 0 0 1 968 528V528A28 28 0 0 1 940 556H68A28 28 0 0 1 40 528V528A28 28 0 0 1 68 500Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="504" y="532.88" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="504" dy="0">The agent decides when to call a tool; you decide which servers it may use, which of their tools are on, and what each server can reach</tspan></text></g>
+</g>
+</svg>

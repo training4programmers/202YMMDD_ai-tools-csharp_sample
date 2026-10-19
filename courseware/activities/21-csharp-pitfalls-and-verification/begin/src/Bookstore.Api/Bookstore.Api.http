@@ -1,0 +1,69 @@
+# Sample requests for the Bookstore API. Start the API first:
+#   dotnet run --project src/Bookstore.Api
+# then click "Send Request" above any request (Visual Studio 2026, or VS Code with the REST Client extension).
+@host = http://localhost:5080
+
+### Health check
+GET {{host}}/health
+
+### All books
+GET {{host}}/api/books
+
+### Books in one genre
+GET {{host}}/api/books?genre=Technology
+
+### One book
+GET {{host}}/api/books/1
+
+### Create a book
+POST {{host}}/api/books
+Content-Type: application/json
+
+{
+  "title": "Learning to Listen",
+  "isbn": "978-1-23456-009-6",
+  "price": 16.50,
+  "stock": 8,
+  "genre": "NonFiction",
+  "publishedOn": "2025-05-01",
+  "authorId": 4
+}
+
+### Create a book with a bad ISBN check digit (expect 400)
+POST {{host}}/api/books
+Content-Type: application/json
+
+{
+  "title": "Bad Checksum",
+  "isbn": "978-1-23456-009-0",
+  "price": 10,
+  "stock": 1,
+  "genre": "Fiction",
+  "publishedOn": "2025-05-01",
+  "authorId": 1
+}
+
+### Authors
+GET {{host}}/api/authors
+
+### Price an order
+POST {{host}}/api/quotes
+Content-Type: application/json
+
+{
+  "lines": [
+    { "bookId": 5, "quantity": 10 },
+    { "bookId": 7, "quantity": 1 }
+  ],
+  "couponCode": "READMORE"
+}
+
+### Apply the supplier's price list (the same rows as samples/supplier-prices.csv)
+POST {{host}}/api/books/prices/import
+Content-Type: text/csv
+
+isbn,price
+9781234560010,19.49
+978-1-23456-005-8,42.00
+123456002x,25.99
+9781234560072,13.49

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="de6569b4e95001f4"><![CDATA[
+{
+  "version": 1,
+  "title": "The supervision spectrum",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "The Supervision Spectrum: Where You Approve",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "Move right as the risk drops and your verify loop gets stronger; the review point moves later each step",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s1",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 120.0,
+      "w": 214.0,
+      "h": 86.0,
+      "text": "Ask before every action\nyou approve each edit and command",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s2",
+      "kind": "rect",
+      "x": 278.0,
+      "y": 120.0,
+      "w": 214.0,
+      "h": 86.0,
+      "text": "Accept edits, ask for commands\nedits land; commands wait",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s3",
+      "kind": "rect",
+      "x": 516.0,
+      "y": 120.0,
+      "w": 214.0,
+      "h": 86.0,
+      "text": "Plan mode\nread-only until the plan is approved",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s4",
+      "kind": "rect",
+      "x": 754.0,
+      "y": 120.0,
+      "w": 214.0,
+      "h": 86.0,
+      "text": "Auto / autopilot\nyou review the result",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "s1",
+      "to": "s2",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn2",
+      "from": "s2",
+      "to": "s3",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn3",
+      "from": "s3",
+      "to": "s4",
+      "route": "straight"
+    },
+    {
+      "type": "label",
+      "id": "rowcc",
+      "x": 40.0,
+      "y": 226.0,
+      "text": "Claude Code",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c1",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 246.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "Manual mode\n(config value: default)",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c2",
+      "kind": "rect",
+      "x": 278.0,
+      "y": 246.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "acceptEdits\n(Shift+Tab from Manual)",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c3",
+      "kind": "rect",
+      "x": 516.0,
+      "y": 246.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "plan\n(Shift+Tab, /plan, Ctrl+G to edit)",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c4",
+      "kind": "rect",
+      "x": 754.0,
+      "y": 246.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "auto: a classifier reviews actions\nbypassPermissions: sandbox only",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "rowgh",
+      "x": 40.0,
+      "y": 326.0,
+      "text": "GitHub Copilot",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g1",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 346.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "Manual permissions;\nConfirm / Allow per tool",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g2",
+      "kind": "rect",
+      "x": 278.0,
+      "y": 346.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "Edits apply (Keep / Undo);\nterminal auto-approve rules",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g3",
+      "kind": "rect",
+      "x": 516.0,
+      "y": 346.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "Plan agent (VS, VS Code);\nCLI plan mode or /plan",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "g4",
+      "kind": "rect",
+      "x": 754.0,
+      "y": 346.0,
+      "w": 214.0,
+      "h": 62.0,
+      "text": "Allow all; Autopilot mode;\nCLI autopilot, --allow-all-tools",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "rowuse",
+      "x": 40.0,
+      "y": 426.0,
+      "text": "Use it for",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "u1",
+      "kind": "note",
+      "x": 40.0,
+      "y": 446.0,
+      "w": 214.0,
+      "h": 66.0,
+      "text": "Unfamiliar code, production config, secrets nearby",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "u2",
+      "kind": "note",
+      "x": 278.0,
+      "y": 446.0,
+      "w": 214.0,
+      "h": 66.0,
+      "text": "Everyday work on a branch you can diff and reset",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "u3",
+      "kind": "note",
+      "x": 516.0,
+      "y": 446.0,
+      "w": 214.0,
+      "h": 66.0,
+      "text": "Multi-file features; anything you would design first",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "u4",
+      "kind": "note",
+      "x": 754.0,
+      "y": 446.0,
+      "w": 214.0,
+      "h": 66.0,
+      "text": "Well-tested code, strong verify loop, isolated environment",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "always",
+      "kind": "stadium",
+      "x": 40.0,
+      "y": 536.0,
+      "w": 928.0,
+      "h": 44.0,
+      "text": "At every level: deny rules block, hooks enforce, and git diff plus your tests decide what you keep",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    }
+  ],
+  "next_id": {
+    "conn": 3
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M254 163L269 163" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M278 163L268 167L268 159Z" fill="#6b6a66"/></g>
+<g id="conn2"><path d="M492 163L507 163" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M516 163L506 167L506 159Z" fill="#6b6a66"/></g>
+<g id="conn3"><path d="M730 163L745 163" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M754 163L744 167L744 159Z" fill="#6b6a66"/></g>
+<g id="title"><text x="306.45" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="306.45" dy="0">The Supervision Spectrum: Where You Approve</tspan></text></g>
+<g id="subtitle"><text x="357.39" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="357.39" dy="0">Move right as the risk drops and your verify loop gets stronger; the review point moves later each step</tspan></text></g>
+<g id="s1"><path d="M50 120H244A10 10 0 0 1 254 130V196A10 10 0 0 1 244 206H50A10 10 0 0 1 40 196V130A10 10 0 0 1 50 120Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="147" y="151.63" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="147" dy="0">Ask before every action</tspan><tspan x="147" dy="16.25">you approve each edit and</tspan><tspan x="147" dy="16.25">command</tspan></text></g>
+<g id="s2"><path d="M288 120H482A10 10 0 0 1 492 130V196A10 10 0 0 1 482 206H288A10 10 0 0 1 278 196V130A10 10 0 0 1 288 120Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="385" y="159.75" font-family="IBM Plex Sans" font-size="13" fill="#0a4d36" text-anchor="middle"><tspan x="385" dy="0">Accept edits, ask for commands</tspan><tspan x="385" dy="16.25">edits land; commands wait</tspan></text></g>
+<g id="s3"><path d="M526 120H720A10 10 0 0 1 730 130V196A10 10 0 0 1 720 206H526A10 10 0 0 1 516 196V130A10 10 0 0 1 526 120Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="623" y="151.63" font-family="IBM Plex Sans" font-size="13" fill="#2a2160" text-anchor="middle"><tspan x="623" dy="0">Plan mode</tspan><tspan x="623" dy="16.25">read-only until the plan is</tspan><tspan x="623" dy="16.25">approved</tspan></text></g>
+<g id="s4"><path d="M764 120H958A10 10 0 0 1 968 130V196A10 10 0 0 1 958 206H764A10 10 0 0 1 754 196V130A10 10 0 0 1 764 120Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="861" y="159.75" font-family="IBM Plex Sans" font-size="13" fill="#7a2f0f" text-anchor="middle"><tspan x="861" dy="0">Auto / autopilot</tspan><tspan x="861" dy="16.25">you review the result</tspan></text></g>
+<g id="rowcc"><text x="75.46" y="238" font-family="IBM Plex Sans" font-size="12" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="75.46" dy="0">Claude Code</tspan></text></g>
+<g id="c1"><path d="M50 246H244A10 10 0 0 1 254 256V298A10 10 0 0 1 244 308H50A10 10 0 0 1 40 298V256A10 10 0 0 1 50 246Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="147" y="274" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="147" dy="0">Manual mode</tspan><tspan x="147" dy="15">(config value: default)</tspan></text></g>
+<g id="c2"><path d="M288 246H482A10 10 0 0 1 492 256V298A10 10 0 0 1 482 308H288A10 10 0 0 1 278 298V256A10 10 0 0 1 288 246Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="385" y="274" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="385" dy="0">acceptEdits</tspan><tspan x="385" dy="15">(Shift+Tab from Manual)</tspan></text></g>
+<g id="c3"><path d="M526 246H720A10 10 0 0 1 730 256V298A10 10 0 0 1 720 308H526A10 10 0 0 1 516 298V256A10 10 0 0 1 526 246Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="623" y="274" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="623" dy="0">plan</tspan><tspan x="623" dy="15">(Shift+Tab, /plan, Ctrl+G to edit)</tspan></text></g>
+<g id="c4"><path d="M764 246H958A10 10 0 0 1 968 256V298A10 10 0 0 1 958 308H764A10 10 0 0 1 754 298V256A10 10 0 0 1 764 246Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="861" y="274" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="861" dy="0">auto: a classifier reviews actions</tspan><tspan x="861" dy="15">bypassPermissions: sandbox only</tspan></text></g>
+<g id="rowgh"><text x="81.43" y="338" font-family="IBM Plex Sans" font-size="12" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="81.43" dy="0">GitHub Copilot</tspan></text></g>
+<g id="g1"><path d="M50 346H244A10 10 0 0 1 254 356V398A10 10 0 0 1 244 408H50A10 10 0 0 1 40 398V356A10 10 0 0 1 50 346Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><text x="147" y="374" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="147" dy="0">Manual permissions;</tspan><tspan x="147" dy="15">Confirm / Allow per tool</tspan></text></g>
+<g id="g2"><path d="M288 346H482A10 10 0 0 1 492 356V398A10 10 0 0 1 482 408H288A10 10 0 0 1 278 398V356A10 10 0 0 1 288 346Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><text x="385" y="374" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="385" dy="0">Edits apply (Keep / Undo);</tspan><tspan x="385" dy="15">terminal auto-approve rules</tspan></text></g>
+<g id="g3"><path d="M526 346H720A10 10 0 0 1 730 356V398A10 10 0 0 1 720 408H526A10 10 0 0 1 516 398V356A10 10 0 0 1 526 346Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><text x="623" y="374" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="623" dy="0">Plan agent (VS, VS Code);</tspan><tspan x="623" dy="15">CLI plan mode or /plan</tspan></text></g>
+<g id="g4"><path d="M764 346H958A10 10 0 0 1 968 356V398A10 10 0 0 1 958 408H764A10 10 0 0 1 754 398V356A10 10 0 0 1 764 346Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><text x="861" y="374" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="middle"><tspan x="861" dy="0">Allow all; Autopilot mode;</tspan><tspan x="861" dy="15">CLI autopilot, --allow-all-tools</tspan></text></g>
+<g id="rowuse"><text x="65.36" y="438" font-family="IBM Plex Sans" font-size="12" font-weight="700" fill="#6b6a66" text-anchor="middle"><tspan x="65.36" dy="0">Use it for</tspan></text></g>
+<g id="u1"><path d="M40 446L239.48 446L254 460.52L254 512L40 512Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M239.48 446L239.48 460.52L254 460.52" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="147" y="476" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="middle"><tspan x="147" dy="0">Unfamiliar code, production config,</tspan><tspan x="147" dy="15">secrets nearby</tspan></text></g>
+<g id="u2"><path d="M278 446L477.48 446L492 460.52L492 512L278 512Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M477.48 446L477.48 460.52L492 460.52" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="385" y="476" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="middle"><tspan x="385" dy="0">Everyday work on a branch you can</tspan><tspan x="385" dy="15">diff and reset</tspan></text></g>
+<g id="u3"><path d="M516 446L715.48 446L730 460.52L730 512L516 512Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M715.48 446L715.48 460.52L730 460.52" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="623" y="476" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="middle"><tspan x="623" dy="0">Multi-file features; anything you</tspan><tspan x="623" dy="15">would design first</tspan></text></g>
+<g id="u4"><path d="M754 446L953.48 446L968 460.52L968 512L754 512Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M953.48 446L953.48 460.52L968 460.52" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="861" y="476" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="middle"><tspan x="861" dy="0">Well-tested code, strong verify loop,</tspan><tspan x="861" dy="15">isolated environment</tspan></text></g>
+<g id="always"><path d="M62 536H946A22 22 0 0 1 968 558V558A22 22 0 0 1 946 580H62A22 22 0 0 1 40 558V558A22 22 0 0 1 62 536Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="504" y="562.88" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="504" dy="0">At every level: deny rules block, hooks enforce, and git diff plus your tests decide what you keep</tspan></text></g>
+</g>
+</svg>

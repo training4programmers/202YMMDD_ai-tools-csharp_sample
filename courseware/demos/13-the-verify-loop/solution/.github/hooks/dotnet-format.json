@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "matcher": "edit|create",
+        "bash": "pwsh -NoProfile -File scripts/format-changed.ps1",
+        "powershell": "pwsh -NoProfile -File scripts/format-changed.ps1",
+        "timeoutSec": 120
+      }
+    ]
+  }
+}

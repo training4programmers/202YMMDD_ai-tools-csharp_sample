@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="5b2eceb3ce2db760"><![CDATA[
+{
+  "version": 1,
+  "title": "The agentic loop",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "The Agentic Loop: Plan, Act, Observe, Iterate",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "An agent keeps cycling until the build, analyzers, and tests say it is done, then hands the diff to a human",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "goal",
+      "kind": "stadium",
+      "x": 40.0,
+      "y": 250.0,
+      "w": 170.0,
+      "h": 90.0,
+      "text": "Goal\nyour prompt + acceptance criteria",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "plan",
+      "kind": "rect",
+      "x": 250.0,
+      "y": 150.0,
+      "w": 190.0,
+      "h": 90.0,
+      "text": "Plan\nread the code, pick the next steps",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "act",
+      "kind": "rect",
+      "x": 580.0,
+      "y": 150.0,
+      "w": 220.0,
+      "h": 90.0,
+      "text": "Act\nedit files · run dotnet build / dotnet test",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "observe",
+      "kind": "rect",
+      "x": 580.0,
+      "y": 370.0,
+      "w": 220.0,
+      "h": 100.0,
+      "text": "Observe\ncompiler errors · analyzer warnings · test results",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "decide",
+      "kind": "diamond",
+      "x": 255.0,
+      "y": 355.0,
+      "w": 180.0,
+      "h": 130.0,
+      "text": "Done?\nall checks green",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "review",
+      "kind": "stadium",
+      "x": 255.0,
+      "y": 525.0,
+      "w": 180.0,
+      "h": 60.0,
+      "text": "Human review\ngit diff · pull request",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "goal",
+      "to": "plan",
+      "from_side": "top",
+      "to_side": "left"
+    },
+    {
+      "type": "connector",
+      "id": "conn2",
+      "from": "plan",
+      "to": "act",
+      "label": "plan approved"
+    },
+    {
+      "type": "connector",
+      "id": "conn3",
+      "from": "act",
+      "to": "observe",
+      "from_side": "bottom",
+      "to_side": "top",
+      "label": "tool output"
+    },
+    {
+      "type": "connector",
+      "id": "conn4",
+      "from": "observe",
+      "to": "decide",
+      "from_side": "left",
+      "to_side": "right"
+    },
+    {
+      "type": "connector",
+      "id": "conn5",
+      "from": "decide",
+      "to": "plan",
+      "from_side": "top",
+      "to_side": "bottom",
+      "label": "no: iterate"
+    },
+    {
+      "type": "connector",
+      "id": "conn6",
+      "from": "decide",
+      "to": "review",
+      "from_side": "bottom",
+      "to_side": "top",
+      "label": "yes"
+    },
+    {
+      "type": "shape",
+      "id": "context",
+      "kind": "note",
+      "x": 830.0,
+      "y": 120.0,
+      "w": 150.0,
+      "h": 100.0,
+      "text": "Context the agent reads\nAGENTS.md / CLAUDE.md\nopen files · MCP tools",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "guard",
+      "kind": "note",
+      "x": 830.0,
+      "y": 290.0,
+      "w": 150.0,
+      "h": 80.0,
+      "text": "Supervision\npermission prompts\nor autopilot",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn7",
+      "from": "context",
+      "to": "act",
+      "from_side": "left",
+      "to_side": "right",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn8",
+      "from": "guard",
+      "to": "act",
+      "from_side": "top",
+      "to_side": "right",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    }
+  ],
+  "next_id": {
+    "conn": 8
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M125 250L125 195L241 195" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M250 195L240 199L240 191Z" fill="#6b6a66"/></g>
+<g id="conn2"><path d="M440 195L571 195" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M580 195L570 199L570 191Z" fill="#6b6a66"/><rect x="460.83" y="185.38" width="89.34" height="19.25" rx="2" fill="#ffffff"/><text x="505.5" y="199.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="505.5" dy="0">plan approved</tspan></text></g>
+<g id="conn3"><path d="M690 240L690 361" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M690 370L686 360L694 360Z" fill="#6b6a66"/><rect x="654.81" y="290.88" width="70.39" height="19.25" rx="2" fill="#ffffff"/><text x="690" y="305.38" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="690" dy="0">tool output</tspan></text></g>
+<g id="conn4"><path d="M580 420L444 420" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M435 420L445 416L445 424Z" fill="#6b6a66"/></g>
+<g id="conn5"><path d="M345 355L345 249" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M345 240L349 250L341 250Z" fill="#6b6a66"/><rect x="312.13" y="292.38" width="65.74" height="19.25" rx="2" fill="#ffffff"/><text x="345" y="306.88" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="345" dy="0">no: iterate</tspan></text></g>
+<g id="conn6"><path d="M345 485L345 516" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M345 525L341 515L349 515Z" fill="#6b6a66"/><rect x="332.06" y="490.88" width="25.89" height="19.25" rx="2" fill="#ffffff"/><text x="345" y="505.38" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="345" dy="0">yes</tspan></text></g>
+<g id="conn7"><path d="M830 170L815 170L815 195L809 195" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M800 195L810 191L810 199Z" fill="#6b6a66"/></g>
+<g id="conn8"><path d="M905 290L905 195L809 195" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M800 195L810 191L810 199Z" fill="#6b6a66"/></g>
+<g id="title"><text x="293.21" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="293.21" dy="0">The Agentic Loop: Plan, Act, Observe, Iterate</tspan></text></g>
+<g id="subtitle"><text x="364.07" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="364.07" dy="0">An agent keeps cycling until the build, analyzers, and tests say it is done, then hands the diff to a human</tspan></text></g>
+<g id="goal"><path d="M85 250H165A45 45 0 0 1 210 295V295A45 45 0 0 1 165 340H85A45 45 0 0 1 40 295V295A45 45 0 0 1 85 250Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="125" y="283.63" font-family="IBM Plex Sans" font-size="13" fill="#25303a" text-anchor="middle"><tspan x="125" dy="0">Goal</tspan><tspan x="125" dy="16.25">your prompt +</tspan><tspan x="125" dy="16.25">acceptance criteria</tspan></text></g>
+<g id="plan"><path d="M260 150H430A10 10 0 0 1 440 160V230A10 10 0 0 1 430 240H260A10 10 0 0 1 250 230V160A10 10 0 0 1 260 150Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="345" y="183.63" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="345" dy="0">Plan</tspan><tspan x="345" dy="16.25">read the code, pick the next</tspan><tspan x="345" dy="16.25">steps</tspan></text></g>
+<g id="act"><path d="M590 150H790A10 10 0 0 1 800 160V230A10 10 0 0 1 790 240H590A10 10 0 0 1 580 230V160A10 10 0 0 1 590 150Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="690" y="183.63" font-family="IBM Plex Sans" font-size="13" fill="#7a2f0f" text-anchor="middle"><tspan x="690" dy="0">Act</tspan><tspan x="690" dy="16.25">edit files · run dotnet build /</tspan><tspan x="690" dy="16.25">dotnet test</tspan></text></g>
+<g id="observe"><path d="M590 370H790A10 10 0 0 1 800 380V460A10 10 0 0 1 790 470H590A10 10 0 0 1 580 460V380A10 10 0 0 1 590 370Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="690" y="408.63" font-family="IBM Plex Sans" font-size="13" fill="#0a4d36" text-anchor="middle"><tspan x="690" dy="0">Observe</tspan><tspan x="690" dy="16.25">compiler errors · analyzer</tspan><tspan x="690" dy="16.25">warnings · test results</tspan></text></g>
+<g id="decide"><path d="M345 355L435 420L345 485L255 420Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="345" y="408.63" font-family="IBM Plex Sans" font-size="13" fill="#2a2160" text-anchor="middle"><tspan x="345" dy="0">Done?</tspan><tspan x="345" dy="16.25">all checks</tspan><tspan x="345" dy="16.25">green</tspan></text></g>
+<g id="review"><path d="M285 525H405A30 30 0 0 1 435 555V555A30 30 0 0 1 405 585H285A30 30 0 0 1 255 555V555A30 30 0 0 1 285 525Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="345" y="551.75" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="345" dy="0">Human review</tspan><tspan x="345" dy="16.25">git diff · pull request</tspan></text></g>
+<g id="context"><path d="M830 120L962 120L980 138L980 220L830 220Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M962 120L962 138L980 138" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="905" y="142.38" font-family="IBM Plex Sans" font-size="13" fill="#5c4100" text-anchor="middle"><tspan x="905" dy="0">Context the agent</tspan><tspan x="905" dy="16.25">reads</tspan><tspan x="905" dy="16.25">AGENTS.md /</tspan><tspan x="905" dy="16.25">CLAUDE.md</tspan><tspan x="905" dy="16.25">open files · MCP tools</tspan></text></g>
+<g id="guard"><path d="M830 290L962.4 290L980 307.6L980 370L830 370Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><path d="M962.4 290L962.4 307.6L980 307.6" fill="none" stroke="#898781" stroke-width="1.5"/><text x="905" y="318.63" font-family="IBM Plex Sans" font-size="13" fill="#3a3937" text-anchor="middle"><tspan x="905" dy="0">Supervision</tspan><tspan x="905" dy="16.25">permission prompts</tspan><tspan x="905" dy="16.25">or autopilot</tspan></text></g>
+</g>
+</svg>

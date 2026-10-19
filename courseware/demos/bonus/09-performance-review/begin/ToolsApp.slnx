@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/ToolsApp.Benchmarks/ToolsApp.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/ToolsApp.Api/ToolsApp.Api.csproj" />
+    <Project Path="src/ToolsApp.Domain/ToolsApp.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ToolsApp.Tests/ToolsApp.Tests.csproj" />
+  </Folder>
+</Solution>

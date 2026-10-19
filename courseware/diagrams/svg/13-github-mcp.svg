@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="7025df495380262f"><![CDATA[
+{
+  "version": 1,
+  "title": "Connecting agents to GitHub with MCP",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "Connecting Agents to GitHub with MCP",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "One server, two ways to run it: remote (nothing to install) or local; scope it with toolsets and read-only mode",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "clients",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 115.0,
+      "w": 250.0,
+      "h": 380.0,
+      "text": "",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "clientsLabel",
+      "x": 55.0,
+      "y": 125.0,
+      "text": "MCP clients (agent mode or CLI)",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c1",
+      "kind": "rect",
+      "x": 55.0,
+      "y": 155.0,
+      "w": 220.0,
+      "h": 70.0,
+      "text": "VS Code + GitHub Copilot\nremote (OAuth sign-in) or local",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c2",
+      "kind": "rect",
+      "x": 55.0,
+      "y": 240.0,
+      "w": 220.0,
+      "h": 70.0,
+      "text": "Visual Studio 2026 + GitHub Copilot\nremote or local",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c3",
+      "kind": "rect",
+      "x": 55.0,
+      "y": 325.0,
+      "w": 220.0,
+      "h": 70.0,
+      "text": "GitHub Copilot CLI\nGitHub MCP server built in",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "c4",
+      "kind": "rect",
+      "x": 55.0,
+      "y": 410.0,
+      "w": 220.0,
+      "h": 70.0,
+      "text": "Claude Code\nremote with a PAT header, or local",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "local",
+      "kind": "rect",
+      "x": 400.0,
+      "y": 130.0,
+      "w": 255.0,
+      "h": 150.0,
+      "text": "Local server: github-mcp-server\nstdio, run with Docker:\nghcr.io/github/github-mcp-server\nauth: GITHUB_PERSONAL_ACCESS_TOKEN\nscope it: --toolsets, --read-only",
+      "style": {
+        "fill": "#d9f2e9",
+        "stroke": "#0f8f63",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#0a4d36",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "remote",
+      "kind": "rect",
+      "x": 400.0,
+      "y": 345.0,
+      "w": 255.0,
+      "h": 150.0,
+      "text": "Remote server: api.githubcopilot.com/mcp/\nhosted by GitHub, streamable HTTP\nauth: OAuth or a PAT header\nscope it: X-MCP-Toolsets, X-MCP-Readonly",
+      "style": {
+        "fill": "#e6e4f6",
+        "stroke": "#4a3aa7",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#2a2160",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ado",
+      "kind": "rect",
+      "x": 718.0,
+      "y": 115.0,
+      "w": 250.0,
+      "h": 300.0,
+      "text": "",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "adoLabel",
+      "x": 733.0,
+      "y": 125.0,
+      "text": "GitHub: your org and repositories",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 13.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s1",
+      "kind": "rect",
+      "x": 733.0,
+      "y": 160.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Issues\nsub-issues, labels",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s2",
+      "kind": "rect",
+      "x": 848.0,
+      "y": 160.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Pull requests\nreviews, comments",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s3",
+      "kind": "rect",
+      "x": 733.0,
+      "y": 241.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Repos\nfiles, branches",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s4",
+      "kind": "rect",
+      "x": 848.0,
+      "y": 241.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Actions\nruns, logs",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s5",
+      "kind": "rect",
+      "x": 733.0,
+      "y": 322.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Projects\nitems, fields",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "s6",
+      "kind": "rect",
+      "x": 848.0,
+      "y": 322.0,
+      "w": 105.0,
+      "h": 66.0,
+      "text": "Code security\nalerts",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "note",
+      "kind": "note",
+      "x": 718.0,
+      "y": 435.0,
+      "w": 250.0,
+      "h": 80.0,
+      "text": "The server acts as you: your org and repository permissions and the token or OAuth scopes still apply. Prefer read-only until you need writes.",
+      "style": {
+        "fill": "#fbeecf",
+        "stroke": "#b07d00",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#5c4100",
+        "align": "left",
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "e1",
+      "from": "clients",
+      "to": "local",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight",
+      "label": "stdio",
+      "label_at": 0.55
+    },
+    {
+      "type": "connector",
+      "id": "e2",
+      "from": "clients",
+      "to": "remote",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight",
+      "label": "HTTPS + token",
+      "label_at": 0.55
+    },
+    {
+      "type": "connector",
+      "id": "e3",
+      "from": "local",
+      "to": "ado",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight",
+      "label": "API"
+    },
+    {
+      "type": "connector",
+      "id": "e4",
+      "from": "remote",
+      "to": "ado",
+      "from_side": "right",
+      "to_side": "left",
+      "route": "straight",
+      "label": "API"
+    }
+  ],
+  "next_id": {}
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="e1"><path d="M290 305L393.34 211.05" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M400 205L395.29 214.69L389.91 208.77Z" fill="#6b6a66"/><rect x="329.43" y="243.7" width="34.82" height="19.25" rx="2" fill="#ffffff"/><text x="346.84" y="258.2" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="346.84" dy="0">stdio</tspan></text></g>
+<g id="e2"><path d="M290 305L393.78 413.5" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M400 420L390.2 415.54L395.98 410.01Z" fill="#6b6a66"/><rect x="300.74" y="355.05" width="92.67" height="19.25" rx="2" fill="#ffffff"/><text x="347.08" y="369.55" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="347.08" dy="0">HTTPS + token</tspan></text></g>
+<g id="e3"><path d="M655 205L711.48 258.79" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M718 265L708 261L713.52 255.21Z" fill="#6b6a66"/><rect x="669.54" y="222.27" width="27.41" height="19.25" rx="2" fill="#ffffff"/><text x="683.24" y="236.77" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="683.24" dy="0">API</tspan></text></g>
+<g id="e4"><path d="M655 420L714.61 273.34" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M718 265L717.94 275.77L710.53 272.76Z" fill="#6b6a66"/><rect x="671.1" y="337.04" width="27.41" height="19.25" rx="2" fill="#ffffff"/><text x="684.81" y="351.54" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="684.81" dy="0">API</tspan></text></g>
+<g id="title"><text x="259" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="259" dy="0">Connecting Agents to GitHub with MCP</tspan></text></g>
+<g id="subtitle"><text x="377.71" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="377.71" dy="0">One server, two ways to run it: remote (nothing to install) or local; scope it with toolsets and read-only mode</tspan></text></g>
+<g id="clients"><path d="M50 115H280A10 10 0 0 1 290 125V485A10 10 0 0 1 280 495H50A10 10 0 0 1 40 485V125A10 10 0 0 1 50 115Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/></g>
+<g id="clientsLabel"><text x="152.49" y="138" font-family="IBM Plex Sans" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="152.49" dy="0">MCP clients (agent mode or CLI)</tspan></text></g>
+<g id="c1"><path d="M65 155H265A10 10 0 0 1 275 165V215A10 10 0 0 1 265 225H65A10 10 0 0 1 55 215V165A10 10 0 0 1 65 155Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="165" y="187" font-family="IBM Plex Sans" font-size="12" fill="#10386b" text-anchor="middle"><tspan x="165" dy="0">VS Code + GitHub Copilot</tspan><tspan x="165" dy="15">remote (OAuth sign-in) or local</tspan></text></g>
+<g id="c2"><path d="M65 240H265A10 10 0 0 1 275 250V300A10 10 0 0 1 265 310H65A10 10 0 0 1 55 300V250A10 10 0 0 1 65 240Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="165" y="272" font-family="IBM Plex Sans" font-size="12" fill="#10386b" text-anchor="middle"><tspan x="165" dy="0">Visual Studio 2026 + GitHub Copilot</tspan><tspan x="165" dy="15">remote or local</tspan></text></g>
+<g id="c3"><path d="M65 325H265A10 10 0 0 1 275 335V385A10 10 0 0 1 265 395H65A10 10 0 0 1 55 385V335A10 10 0 0 1 65 325Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="165" y="357" font-family="IBM Plex Sans" font-size="12" fill="#10386b" text-anchor="middle"><tspan x="165" dy="0">GitHub Copilot CLI</tspan><tspan x="165" dy="15">GitHub MCP server built in</tspan></text></g>
+<g id="c4"><path d="M65 410H265A10 10 0 0 1 275 420V470A10 10 0 0 1 265 480H65A10 10 0 0 1 55 470V420A10 10 0 0 1 65 410Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="165" y="442" font-family="IBM Plex Sans" font-size="12" fill="#10386b" text-anchor="middle"><tspan x="165" dy="0">Claude Code</tspan><tspan x="165" dy="15">remote with a PAT header, or local</tspan></text></g>
+<g id="local"><path d="M410 130H645A10 10 0 0 1 655 140V270A10 10 0 0 1 645 280H410A10 10 0 0 1 400 270V140A10 10 0 0 1 410 130Z" fill="#d9f2e9" stroke="#0f8f63" stroke-width="1.5"/><text x="527.5" y="179.5" font-family="IBM Plex Sans" font-size="12" fill="#0a4d36" text-anchor="middle"><tspan x="527.5" dy="0">Local server: github-mcp-server</tspan><tspan x="527.5" dy="15">stdio, run with Docker:</tspan><tspan x="527.5" dy="15">ghcr.io/github/github-mcp-server</tspan><tspan x="527.5" dy="15">auth: GITHUB_PERSONAL_ACCESS_TOKEN</tspan><tspan x="527.5" dy="15">scope it: --toolsets, --read-only</tspan></text></g>
+<g id="remote"><path d="M410 345H645A10 10 0 0 1 655 355V485A10 10 0 0 1 645 495H410A10 10 0 0 1 400 485V355A10 10 0 0 1 410 345Z" fill="#e6e4f6" stroke="#4a3aa7" stroke-width="1.5"/><text x="527.5" y="402" font-family="IBM Plex Sans" font-size="12" fill="#2a2160" text-anchor="middle"><tspan x="527.5" dy="0">Remote server: api.githubcopilot.com/mcp/</tspan><tspan x="527.5" dy="15">hosted by GitHub, streamable HTTP</tspan><tspan x="527.5" dy="15">auth: OAuth or a PAT header</tspan><tspan x="527.5" dy="15">scope it: X-MCP-Toolsets, X-MCP-Readonly</tspan></text></g>
+<g id="ado"><path d="M728 115H958A10 10 0 0 1 968 125V405A10 10 0 0 1 958 415H728A10 10 0 0 1 718 405V125A10 10 0 0 1 728 115Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/></g>
+<g id="adoLabel"><text x="834.28" y="138" font-family="IBM Plex Sans" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="834.28" dy="0">GitHub: your org and repositories</tspan></text></g>
+<g id="s1"><path d="M743 160H828A10 10 0 0 1 838 170V216A10 10 0 0 1 828 226H743A10 10 0 0 1 733 216V170A10 10 0 0 1 743 160Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="785.5" y="182.5" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="785.5" dy="0">Issues</tspan><tspan x="785.5" dy="15">sub-issues,</tspan><tspan x="785.5" dy="15">labels</tspan></text></g>
+<g id="s2"><path d="M858 160H943A10 10 0 0 1 953 170V216A10 10 0 0 1 943 226H858A10 10 0 0 1 848 216V170A10 10 0 0 1 858 160Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="900.5" y="182.5" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="900.5" dy="0">Pull requests</tspan><tspan x="900.5" dy="15">reviews,</tspan><tspan x="900.5" dy="15">comments</tspan></text></g>
+<g id="s3"><path d="M743 241H828A10 10 0 0 1 838 251V297A10 10 0 0 1 828 307H743A10 10 0 0 1 733 297V251A10 10 0 0 1 743 241Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="785.5" y="271" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="785.5" dy="0">Repos</tspan><tspan x="785.5" dy="15">files, branches</tspan></text></g>
+<g id="s4"><path d="M858 241H943A10 10 0 0 1 953 251V297A10 10 0 0 1 943 307H858A10 10 0 0 1 848 297V251A10 10 0 0 1 858 241Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="900.5" y="271" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="900.5" dy="0">Actions</tspan><tspan x="900.5" dy="15">runs, logs</tspan></text></g>
+<g id="s5"><path d="M743 322H828A10 10 0 0 1 838 332V378A10 10 0 0 1 828 388H743A10 10 0 0 1 733 378V332A10 10 0 0 1 743 322Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="785.5" y="352" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="785.5" dy="0">Projects</tspan><tspan x="785.5" dy="15">items, fields</tspan></text></g>
+<g id="s6"><path d="M858 322H943A10 10 0 0 1 953 332V378A10 10 0 0 1 943 388H858A10 10 0 0 1 848 378V332A10 10 0 0 1 858 322Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><text x="900.5" y="352" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="900.5" dy="0">Code security</tspan><tspan x="900.5" dy="15">alerts</tspan></text></g>
+<g id="note"><path d="M718 435L950.4 435L968 452.6L968 515L718 515Z" fill="#fbeecf" stroke="#b07d00" stroke-width="1.5"/><path d="M950.4 435L950.4 452.6L968 452.6" fill="none" stroke="#b07d00" stroke-width="1.5"/><text x="728" y="457" font-family="IBM Plex Sans" font-size="12" fill="#5c4100" text-anchor="start"><tspan x="728" dy="0">The server acts as you: your org and</tspan><tspan x="728" dy="15">repository permissions and the token or</tspan><tspan x="728" dy="15">OAuth scopes still apply. Prefer read-only</tspan><tspan x="728" dy="15">until you need writes.</tspan></text></g>
+</g>
+</svg>

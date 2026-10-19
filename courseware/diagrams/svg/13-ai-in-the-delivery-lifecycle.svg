@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:db="https://cloudcontraptions.com/ns/diagram-builder/1" width="1008pt" height="612pt" viewBox="0 0 1008 612" db:version="1">
+<metadata>
+<db:model version="1" generator="diagram-builder 0.1.0" body-hash="e33c384179a6096d"><![CDATA[
+{
+  "version": 1,
+  "title": "AI across the delivery lifecycle",
+  "page": {
+    "width": 1008.0,
+    "height": 612.0,
+    "margin": 36.0,
+    "background": "#ffffff"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "id": "title",
+      "x": 40.0,
+      "y": 36.0,
+      "text": "AI Across the Delivery Lifecycle with GitHub",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 24.0,
+        "font_weight": 700,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "label",
+      "id": "subtitle",
+      "x": 40.0,
+      "y": 72.0,
+      "text": "AI drafts, implements, reviews, summarizes, and triages at every stage; people approve the merge and the release",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 14.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#6b6a66",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "boards",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 140.0,
+      "w": 132.0,
+      "h": 70.0,
+      "text": "Issues & Projects\nplan",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "repos",
+      "kind": "rect",
+      "x": 196.0,
+      "y": 140.0,
+      "w": 132.0,
+      "h": 70.0,
+      "text": "Code\nimplement on a branch",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "review",
+      "kind": "rect",
+      "x": 352.0,
+      "y": 140.0,
+      "w": 132.0,
+      "h": 70.0,
+      "text": "Pull request\nreview",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "pipes",
+      "kind": "rect",
+      "x": 508.0,
+      "y": 140.0,
+      "w": 132.0,
+      "h": 70.0,
+      "text": "Actions\nbuild, test, scan",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "release",
+      "kind": "rect",
+      "x": 664.0,
+      "y": 140.0,
+      "w": 132.0,
+      "h": 70.0,
+      "text": "Release\nship",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ops",
+      "kind": "rect",
+      "x": 820.0,
+      "y": 140.0,
+      "w": 148.0,
+      "h": 70.0,
+      "text": "Operations\nrun and support",
+      "style": {
+        "fill": "#e3edfb",
+        "stroke": "#2a78d6",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#10386b",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn1",
+      "from": "boards",
+      "to": "repos",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn2",
+      "from": "repos",
+      "to": "review",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn3",
+      "from": "review",
+      "to": "pipes",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn4",
+      "from": "pipes",
+      "to": "release",
+      "route": "straight"
+    },
+    {
+      "type": "connector",
+      "id": "conn5",
+      "from": "release",
+      "to": "ops",
+      "route": "straight"
+    },
+    {
+      "type": "shape",
+      "id": "ai1",
+      "kind": "rect",
+      "x": 40.0,
+      "y": 270.0,
+      "w": 132.0,
+      "h": 110.0,
+      "text": "Draft and refine issues and acceptance criteria via the GitHub MCP server",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ai2",
+      "kind": "rect",
+      "x": 196.0,
+      "y": 270.0,
+      "w": 132.0,
+      "h": 110.0,
+      "text": "Local agent or Copilot cloud agent implements, then opens the PR",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ai3",
+      "kind": "rect",
+      "x": 352.0,
+      "y": 270.0,
+      "w": 132.0,
+      "h": 110.0,
+      "text": "Copilot code review, or an agent review of the diff",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ai4",
+      "kind": "rect",
+      "x": 508.0,
+      "y": 270.0,
+      "w": 132.0,
+      "h": 110.0,
+      "text": "CodeQL and dependency review gate; agent PR summary and failure triage",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ai5",
+      "kind": "rect",
+      "x": 664.0,
+      "y": 270.0,
+      "w": 132.0,
+      "h": 110.0,
+      "text": "AI-drafted release notes from merged PRs and issues",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "ai6",
+      "kind": "rect",
+      "x": 820.0,
+      "y": 270.0,
+      "w": 148.0,
+      "h": 110.0,
+      "text": "Incident triage from logs and traces",
+      "style": {
+        "fill": "#fce6da",
+        "stroke": "#d9541f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": 10.0,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#7a2f0f",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn6",
+      "from": "boards",
+      "to": "ai1",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn7",
+      "from": "repos",
+      "to": "ai2",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn8",
+      "from": "review",
+      "to": "ai3",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn9",
+      "from": "pipes",
+      "to": "ai4",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn10",
+      "from": "release",
+      "to": "ai5",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn11",
+      "from": "ops",
+      "to": "ai6",
+      "route": "straight",
+      "end_arrow": "none",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "human1",
+      "kind": "stadium",
+      "x": 323.0,
+      "y": 440.0,
+      "w": 190.0,
+      "h": 64.0,
+      "text": "People approve the merge\nCopilot only comments",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "human2",
+      "kind": "stadium",
+      "x": 635.0,
+      "y": 440.0,
+      "w": 190.0,
+      "h": 64.0,
+      "text": "People approve the release\nenvironment approvals",
+      "style": {
+        "fill": "#dff0da",
+        "stroke": "#2f8a2f",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#1c4d1c",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn12",
+      "from": "human1",
+      "to": "ai3",
+      "route": "straight",
+      "label": "gate"
+    },
+    {
+      "type": "connector",
+      "id": "conn13",
+      "from": "human2",
+      "to": "ai5",
+      "route": "straight",
+      "label": "gate"
+    },
+    {
+      "type": "shape",
+      "id": "legend",
+      "kind": "note",
+      "x": 40.0,
+      "y": 430.0,
+      "w": 250.0,
+      "h": 90.0,
+      "text": "Orange: AI touchpoints\nGreen: decisions people own\nEvery AI step leaves a link or comment\non the issue or pull request",
+      "style": {
+        "fill": "#f0efec",
+        "stroke": "#898781",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#3a3937",
+        "align": "left",
+        "padding": null
+      }
+    },
+    {
+      "type": "shape",
+      "id": "loop",
+      "kind": "note",
+      "x": 845.0,
+      "y": 440.0,
+      "w": 98.0,
+      "h": 80.0,
+      "text": "Incidents become new issues",
+      "style": {
+        "fill": "#eceef1",
+        "stroke": "#5b6672",
+        "stroke_width": null,
+        "dash": null,
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": 12.0,
+        "font_weight": null,
+        "italic": null,
+        "text_color": "#25303a",
+        "align": null,
+        "padding": null
+      }
+    },
+    {
+      "type": "connector",
+      "id": "conn14",
+      "from": "ai6",
+      "to": "loop",
+      "from_side": "bottom",
+      "to_side": "top",
+      "route": "straight",
+      "style": {
+        "fill": null,
+        "stroke": null,
+        "stroke_width": null,
+        "dash": "dashed",
+        "opacity": null,
+        "corner_radius": null,
+        "font": null,
+        "font_size": null,
+        "font_weight": null,
+        "italic": null,
+        "text_color": null,
+        "align": null,
+        "padding": null
+      }
+    }
+  ],
+  "next_id": {
+    "conn": 14
+  }
+}
+]]></db:model>
+</metadata>
+<!-- GENERATED BY diagram-builder. The <metadata> block above is the source of truth.
+       Edits made below this line are DISCARDED on the next diagram-builder command. -->
+<g id="db-body">
+<rect x="0" y="0" width="1008" height="612" fill="#ffffff"/>
+<g id="conn1"><path d="M172 175L187 175" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M196 175L186 179L186 171Z" fill="#6b6a66"/></g>
+<g id="conn2"><path d="M328 175L343 175" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M352 175L342 179L342 171Z" fill="#6b6a66"/></g>
+<g id="conn3"><path d="M484 175L499 175" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M508 175L498 179L498 171Z" fill="#6b6a66"/></g>
+<g id="conn4"><path d="M640 175L655 175" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M664 175L654 179L654 171Z" fill="#6b6a66"/></g>
+<g id="conn5"><path d="M796 175L811 175" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M820 175L810 179L810 171Z" fill="#6b6a66"/></g>
+<g id="conn6"><path d="M106 210L106 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn7"><path d="M262 210L262 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn8"><path d="M418 210L418 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn9"><path d="M574 210L574 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn10"><path d="M730 210L730 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn11"><path d="M894 210L894 270" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/></g>
+<g id="conn12"><path d="M418 440L418 389" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M418 380L422 390L414 390Z" fill="#6b6a66"/><rect x="402.29" y="404.88" width="31.42" height="19.25" rx="2" fill="#ffffff"/><text x="418" y="419.38" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="418" dy="0">gate</tspan></text></g>
+<g id="conn13"><path d="M730 440L730 389" fill="none" stroke="#6b6a66" stroke-width="1.5"/><path d="M730 380L734 390L726 390Z" fill="#6b6a66"/><rect x="714.29" y="404.88" width="31.42" height="19.25" rx="2" fill="#ffffff"/><text x="730" y="419.38" font-family="IBM Plex Sans" font-size="13" fill="#1a1a1a" text-anchor="middle"><tspan x="730" dy="0">gate</tspan></text></g>
+<g id="conn14"><path d="M894 380L894 431" fill="none" stroke="#6b6a66" stroke-width="1.5" stroke-dasharray="6 3.75" stroke-linecap="round"/><path d="M894 440L890 430L898 430Z" fill="#6b6a66"/></g>
+<g id="title"><text x="288.48" y="60" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#1a1a1a" text-anchor="middle"><tspan x="288.48" dy="0">AI Across the Delivery Lifecycle with GitHub</tspan></text></g>
+<g id="subtitle"><text x="397.37" y="86" font-family="IBM Plex Sans" font-size="14" fill="#6b6a66" text-anchor="middle"><tspan x="397.37" dy="0">AI drafts, implements, reviews, summarizes, and triages at every stage; people approve the merge and the release</tspan></text></g>
+<g id="boards"><path d="M50 140H162A10 10 0 0 1 172 150V200A10 10 0 0 1 162 210H50A10 10 0 0 1 40 200V150A10 10 0 0 1 50 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="106" y="171.75" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="106" dy="0">Issues &amp; Projects</tspan><tspan x="106" dy="16.25">plan</tspan></text></g>
+<g id="repos"><path d="M206 140H318A10 10 0 0 1 328 150V200A10 10 0 0 1 318 210H206A10 10 0 0 1 196 200V150A10 10 0 0 1 206 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="262" y="163.63" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="262" dy="0">Code</tspan><tspan x="262" dy="16.25">implement on a</tspan><tspan x="262" dy="16.25">branch</tspan></text></g>
+<g id="review"><path d="M362 140H474A10 10 0 0 1 484 150V200A10 10 0 0 1 474 210H362A10 10 0 0 1 352 200V150A10 10 0 0 1 362 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="418" y="171.75" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="418" dy="0">Pull request</tspan><tspan x="418" dy="16.25">review</tspan></text></g>
+<g id="pipes"><path d="M518 140H630A10 10 0 0 1 640 150V200A10 10 0 0 1 630 210H518A10 10 0 0 1 508 200V150A10 10 0 0 1 518 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="574" y="171.75" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="574" dy="0">Actions</tspan><tspan x="574" dy="16.25">build, test, scan</tspan></text></g>
+<g id="release"><path d="M674 140H786A10 10 0 0 1 796 150V200A10 10 0 0 1 786 210H674A10 10 0 0 1 664 200V150A10 10 0 0 1 674 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="730" y="171.75" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="730" dy="0">Release</tspan><tspan x="730" dy="16.25">ship</tspan></text></g>
+<g id="ops"><path d="M830 140H958A10 10 0 0 1 968 150V200A10 10 0 0 1 958 210H830A10 10 0 0 1 820 200V150A10 10 0 0 1 830 140Z" fill="#e3edfb" stroke="#2a78d6" stroke-width="1.5"/><text x="894" y="171.75" font-family="IBM Plex Sans" font-size="13" fill="#10386b" text-anchor="middle"><tspan x="894" dy="0">Operations</tspan><tspan x="894" dy="16.25">run and support</tspan></text></g>
+<g id="ai1"><path d="M50 270H162A10 10 0 0 1 172 280V370A10 10 0 0 1 162 380H50A10 10 0 0 1 40 370V280A10 10 0 0 1 50 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="106" y="299.5" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="106" dy="0">Draft and refine</tspan><tspan x="106" dy="15">issues and</tspan><tspan x="106" dy="15">acceptance criteria</tspan><tspan x="106" dy="15">via the GitHub MCP</tspan><tspan x="106" dy="15">server</tspan></text></g>
+<g id="ai2"><path d="M206 270H318A10 10 0 0 1 328 280V370A10 10 0 0 1 318 380H206A10 10 0 0 1 196 370V280A10 10 0 0 1 206 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="262" y="307" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="262" dy="0">Local agent or</tspan><tspan x="262" dy="15">Copilot cloud agent</tspan><tspan x="262" dy="15">implements, then</tspan><tspan x="262" dy="15">opens the PR</tspan></text></g>
+<g id="ai3"><path d="M362 270H474A10 10 0 0 1 484 280V370A10 10 0 0 1 474 380H362A10 10 0 0 1 352 370V280A10 10 0 0 1 362 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="418" y="314.5" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="418" dy="0">Copilot code review,</tspan><tspan x="418" dy="15">or an agent review of</tspan><tspan x="418" dy="15">the diff</tspan></text></g>
+<g id="ai4"><path d="M518 270H630A10 10 0 0 1 640 280V370A10 10 0 0 1 630 380H518A10 10 0 0 1 508 370V280A10 10 0 0 1 518 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="574" y="299.5" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="574" dy="0">CodeQL and</tspan><tspan x="574" dy="15">dependency review</tspan><tspan x="574" dy="15">gate; agent PR</tspan><tspan x="574" dy="15">summary and failure</tspan><tspan x="574" dy="15">triage</tspan></text></g>
+<g id="ai5"><path d="M674 270H786A10 10 0 0 1 796 280V370A10 10 0 0 1 786 380H674A10 10 0 0 1 664 370V280A10 10 0 0 1 674 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="730" y="314.5" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="730" dy="0">AI-drafted release</tspan><tspan x="730" dy="15">notes from merged</tspan><tspan x="730" dy="15">PRs and issues</tspan></text></g>
+<g id="ai6"><path d="M830 270H958A10 10 0 0 1 968 280V370A10 10 0 0 1 958 380H830A10 10 0 0 1 820 370V280A10 10 0 0 1 830 270Z" fill="#fce6da" stroke="#d9541f" stroke-width="1.5"/><text x="894" y="322" font-family="IBM Plex Sans" font-size="12" fill="#7a2f0f" text-anchor="middle"><tspan x="894" dy="0">Incident triage from</tspan><tspan x="894" dy="15">logs and traces</tspan></text></g>
+<g id="human1"><path d="M355 440H481A32 32 0 0 1 513 472V472A32 32 0 0 1 481 504H355A32 32 0 0 1 323 472V472A32 32 0 0 1 355 440Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="418" y="468.75" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="418" dy="0">People approve the merge</tspan><tspan x="418" dy="16.25">Copilot only comments</tspan></text></g>
+<g id="human2"><path d="M667 440H793A32 32 0 0 1 825 472V472A32 32 0 0 1 793 504H667A32 32 0 0 1 635 472V472A32 32 0 0 1 667 440Z" fill="#dff0da" stroke="#2f8a2f" stroke-width="1.5"/><text x="730" y="468.75" font-family="IBM Plex Sans" font-size="13" fill="#1c4d1c" text-anchor="middle"><tspan x="730" dy="0">People approve the release</tspan><tspan x="730" dy="16.25">environment approvals</tspan></text></g>
+<g id="legend"><path d="M40 430L272 430L290 448L290 520L40 520Z" fill="#f0efec" stroke="#898781" stroke-width="1.5"/><path d="M272 430L272 448L290 448" fill="none" stroke="#898781" stroke-width="1.5"/><text x="50" y="457" font-family="IBM Plex Sans" font-size="12" fill="#3a3937" text-anchor="start"><tspan x="50" dy="0">Orange: AI touchpoints</tspan><tspan x="50" dy="15">Green: decisions people own</tspan><tspan x="50" dy="15">Every AI step leaves a link or comment</tspan><tspan x="50" dy="15">on the issue or pull request</tspan></text></g>
+<g id="loop"><path d="M845 440L925.4 440L943 457.6L943 520L845 520Z" fill="#eceef1" stroke="#5b6672" stroke-width="1.5"/><path d="M925.4 440L925.4 457.6L943 457.6" fill="none" stroke="#5b6672" stroke-width="1.5"/><text x="894" y="469.5" font-family="IBM Plex Sans" font-size="12" fill="#25303a" text-anchor="middle"><tspan x="894" dy="0">Incidents</tspan><tspan x="894" dy="15">become new</tspan><tspan x="894" dy="15">issues</tspan></text></g>
+</g>
+</svg>

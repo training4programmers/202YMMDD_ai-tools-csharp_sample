@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <EmbeddedResource Include="NamedColors.csv" LogicalName="ToolsApp.Domain.NamedColors.csv" />
+  </ItemGroup>
+
+</Project>

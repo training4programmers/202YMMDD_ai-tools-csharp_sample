@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__toolsapp__find_colors",
+      "mcp__toolsapp__check_contrast",
+      "Bash(dotnet build *)",
+      "Bash(dotnet test *)",
+      "PowerShell(dotnet build *)",
+      "PowerShell(dotnet test *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${CLAUDE_PROJECT_DIR}/scripts/format-changed.ps1"],
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

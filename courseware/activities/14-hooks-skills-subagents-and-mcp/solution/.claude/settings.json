@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__bookstore__find_books",
+      "mcp__bookstore__check_stock",
+      "mcp__bookstore__quote_order",
+      "Bash(dotnet build *)",
+      "Bash(dotnet test *)",
+      "PowerShell(dotnet build *)",
+      "PowerShell(dotnet test *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${CLAUDE_PROJECT_DIR}/scripts/format-changed.ps1"],
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

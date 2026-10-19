@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "bookstore": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": ["run", "--project", "${CLAUDE_PROJECT_DIR:-.}/src/Bookstore.Mcp", "-c", "Release"],
+      "env": {
+        "DOTNET_NOLOGO": "1"
+      }
+    }
+  }
+}
